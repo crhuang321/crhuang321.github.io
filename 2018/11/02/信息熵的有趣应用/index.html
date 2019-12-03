@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>信息熵的有趣应用 | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="信息熵？维基百科这样说：熵-信息论">
+<meta name="keywords" content="信息论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息熵的有趣应用">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2018&#x2F;11&#x2F;02&#x2F;%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E6%9C%89%E8%B6%A3%E5%BA%94%E7%94%A8&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="信息熵？维基百科这样说：熵-信息论">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-03T15:02:57.439Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-信息熵的有趣应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/02/%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E6%9C%89%E8%B6%A3%E5%BA%94%E7%94%A8/" class="article-date">
+  <time datetime="2018-11-02T03:30:27.000Z" itemprop="datePublished">2018-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      信息熵的有趣应用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>信息熵？维基百科这样说：<a href="https://www.wikiwand.com/zh/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA)" target="_blank" rel="noopener">熵-信息论</a></p>
+<a id="more"></a>
+
+<h2 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h2><p>设随机变量<strong>X = { Xi | i = 1, 2, 3, …, n}</strong>，<strong>Xi</strong> 出现的概率为 <strong>P(Xi)</strong>。则 <strong>X</strong> 的不确定性或熵（Entropy）定义为：<strong>H(X) = 𝜮 P(Xi) * log2P(Xi)</strong></p>
+<h2 id="有趣应用"><a href="#有趣应用" class="headerlink" title="有趣应用"></a>有趣应用</h2><p><strong>1. 甲任意取一个不超过10的整数，由乙来猜，但允许乙提K个问题，甲只回答“是”或者“非”，问K多大时可以确定猜到该数。</strong></p>
+<p>答：若令乙猜想作为事件V，V可能有10种结果，假定这10种结果是等概率的，V的熵为：H(V)=log2(10)=3.32。令事件Ak=U1U2U3…Uk 为提问k个问题，但Ui的熵不超过log2(2)=1，（因为只有“是”或者“非”），故Ak的熵为不超过k比特，则：log2(10)&lt;=k·log2(2)=k，k&gt;=3.32，k = 4。故K为4时可以猜到这个数。 </p>
+<p><strong>2. 有25个外表完全相同的硬币，其中24个重量完全一样，有一个较轻的伪币，用无砝码的天平，试问要做多少次的比较，可以找到这枚伪币？</strong></p>
+<p>答：事件V为找出伪币，可能有25个结论，他们是等概率，故：H(V)=log2(25)，事件U为天平称的结果，可能有3种情况：左右平衡、左边重、右边重。故：H(U)=log2(3)。令Ak=U1U2U3…Uk为连续用k次天平的事件，由于 k·log2(3)&gt;=log2(25)，k = 3。故最少3次可以找到这枚伪币。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://crhuang321.github.io/2018/11/02/%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E6%9C%89%E8%B6%A3%E5%BA%94%E7%94%A8/" data-id="ck3q2qq490012v4lf5rqphjff" class="article-share-link" data-share="baidu" data-title="信息熵的有趣应用">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/02/%E7%94%A8PV%E6%93%8D%E4%BD%9C%E8%A7%A3%E5%86%B3%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          用PV操作解决生产者消费者问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/02/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">RSA加密算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+    </div>
+    <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/Video-Captioning/" style="font-size: 10px;">Video Captioning</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 17.14px;">操作系统</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 12.86px;">深度学习</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" style="font-size: 18.57px;">论文阅读笔记</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 10px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.71px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/Video-Captioning/">Video Captioning</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/">机器学习术语表</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">排序算法汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">蚁群算法解决旅行商问题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">免疫算法解决旅行商问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

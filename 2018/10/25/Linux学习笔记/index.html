@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux学习笔记 | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux是一个通用操作系统。一个操作系统要负责任务调度、内存分配、处理外围设备I&#x2F;O等操作。操作系统通常由内核和系统程序（设备驱动、底层库、shell、服务程序等）两部分组成。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习笔记">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2018&#x2F;10&#x2F;25&#x2F;Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="Linux是一个通用操作系统。一个操作系统要负责任务调度、内存分配、处理外围设备I&#x2F;O等操作。操作系统通常由内核和系统程序（设备驱动、底层库、shell、服务程序等）两部分组成。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;fork.png">
+<meta property="og:updated_time" content="2019-12-03T12:32:42.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;fork.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Linux学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/25/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2018-10-25T05:15:18.000Z" itemprop="datePublished">2018-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Linux是一个通用操作系统。一个操作系统要负责任务调度、内存分配、处理外围设备I/O等操作。操作系统通常由内核和系统程序（设备驱动、底层库、shell、服务程序等）两部分组成。</p>
+<a id="more"></a>
+
+<h3 id="1-Linux优点"><a href="#1-Linux优点" class="headerlink" title="1  Linux优点"></a>1  Linux优点</h3><ul>
+<li>通用操作系统，不跟特定的硬件绑定。</li>
+<li>用C语言编写，有可移植性，有内核编程接口。</li>
+<li>支持多用户和多任务，支持安全的分层文件系统。</li>
+<li>大量的实用程序，完善的网络功能以及强大的支持文档。</li>
+<li>可靠的安全性和良好的稳定性，对开发者更友好。</li>
+</ul>
+<h3 id="2-Linux基础命令"><a href="#2-Linux基础命令" class="headerlink" title="2 Linux基础命令"></a>2 Linux基础命令</h3><p>Linux系统的通用命令格式：<strong>命令名称 [命名参数][命令对象]</strong></p>
+<ol>
+<li><p>获取登录信息：w / who / last</p>
+</li>
+<li><p>查看进程：ps</p>
+</li>
+<li><p>查看命令的说明：whatis</p>
+<ul>
+<li>whatis ps</li>
+</ul>
+</li>
+<li><p>查看命令的位置：which / whereis</p>
+<ul>
+<li>whereis python</li>
+</ul>
+</li>
+<li><p>查看帮助文档：man / info / apropos</p>
+<ul>
+<li>ps –help</li>
+<li>man ps</li>
+<li>info ps</li>
+</ul>
+</li>
+<li><p>切换用户：su</p>
+<ul>
+<li>su Tom</li>
+</ul>
+</li>
+<li><p>以管理员身份执行命令：sudo</p>
+<ul>
+<li>sudo ls /root</li>
+</ul>
+</li>
+<li><p>登入登出相关：logout / exit / adduser / userdel / passwd / ssh</p>
+</li>
+<li><p>查看系统和主机名：uname / hostname</p>
+</li>
+<li><p>重启和关机：reboot / init 6 / shutdown / init 0</p>
+</li>
+<li><p>查看历史命令：history</p>
+</li>
+</ol>
+<h3 id="3-Linux实用程序"><a href="#3-Linux实用程序" class="headerlink" title="3 Linux实用程序"></a>3 Linux实用程序</h3><h4 id="3-1-文件和文件夹操作"><a href="#3-1-文件和文件夹操作" class="headerlink" title="3.1 文件和文件夹操作"></a>3.1 文件和文件夹操作</h4><ol>
+<li><p>创建/删除目录：mkdir / rmdir</p>
+</li>
+<li><p>创建/删除文件：touch / rm</p>
+<ul>
+<li>touch命令用于创建空白文件或修改文件时间。</li>
+<li>在Linux系统中一个文件有三种时间：<ul>
+<li>更改内容的时间（mtime）</li>
+<li>更改权限的时间（ctime）</li>
+<li>最后访问时间（atime）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>切换和查看当前工作目录：cd / pwd</p>
+</li>
+<li><p>查看目录内容：ls</p>
+</li>
+<li><p>查看文件内容：cat / head / tail / more / less</p>
+</li>
+<li><p>拷贝/移动文件：cp / mv</p>
+</li>
+<li><p>查看文件及内容：find / grep</p>
+</li>
+<li><p>符号链接：ln</p>
+</li>
+<li><p>压缩和归档：gzip / gunzip / xz / tar</p>
+</li>
+<li><p>其他工具：sort / uniq / diff / file / wc</p>
+</li>
+</ol>
+<h4 id="3-2-管道和重定向"><a href="#3-2-管道和重定向" class="headerlink" title="3.2 管道和重定向"></a>3.2 管道和重定向</h4><ul>
+<li>管道的使用：|</li>
+<li>输出重定向和错误重定向：&gt; / 2&gt;</li>
+<li>输入重定向：&lt;</li>
+</ul>
+<h4 id="3-3-别名"><a href="#3-3-别名" class="headerlink" title="3.3 别名"></a>3.3 别名</h4><ul>
+<li>alias</li>
+<li>unalias</li>
+<li>alias nasm=’/usr/local/bin/nasm’</li>
+</ul>
+<h4 id="3-4-其他程序"><a href="#3-4-其他程序" class="headerlink" title="3.4 其他程序"></a>3.4 其他程序</h4><ul>
+<li>时间和日期：date / cal</li>
+<li>录制操作脚本：script</li>
+<li>给用户发送消息：mesg / write / wall / mail</li>
+</ul>
+<h3 id="4-文件系统"><a href="#4-文件系统" class="headerlink" title="4 文件系统"></a>4 文件系统</h3><h4 id="4-1-目录结构"><a href="#4-1-目录结构" class="headerlink" title="4.1 目录结构"></a>4.1 目录结构</h4><ul>
+<li>/bin - 基本命令的二进制文件</li>
+<li>/boot - 引导加载程序的静态文件</li>
+<li>/dev - 设备文件</li>
+<li>/etc - 配置文件</li>
+<li>/home - 用户主目录的父目录</li>
+<li>/lib - 共享库文件</li>
+<li>/lib64 - 共享64位库文件</li>
+<li>/lost+found - 存放未链接文件</li>
+<li>/media - 自动识别设备的挂载目录</li>
+<li>/mnt - 临时挂载文件系统的挂载点</li>
+<li>/opt - 可选插件软件包安装位置</li>
+<li>/proc - 内核和进程信息</li>
+<li>/root - root账户主目录</li>
+<li>/run - 存放系统运行时需要的东西</li>
+<li>/sbin - 超级用户的二进制文件</li>
+<li>/sys - 设备的伪文件系统</li>
+<li>/tmp - 临时文件夹</li>
+<li>/usr - 用户应用目录</li>
+<li>/var - 变量数据目录</li>
+</ul>
+<h4 id="4-2-访问权限"><a href="#4-2-访问权限" class="headerlink" title="4.2 访问权限"></a>4.2 访问权限</h4><ul>
+<li>chmod</li>
+<li>chown</li>
+</ul>
+<h4 id="4-3-磁盘管理"><a href="#4-3-磁盘管理" class="headerlink" title="4.3 磁盘管理"></a>4.3 磁盘管理</h4><ul>
+<li>列出文件系统的磁盘使用状况 - df</li>
+<li>磁盘分区表操作 - fdisk</li>
+<li>格式化文件系统 - mkfs</li>
+<li>文件系统检查 - fsck</li>
+<li>挂载/卸载 - mount / umount</li>
+</ul>
+<h3 id="5-环境变量"><a href="#5-环境变量" class="headerlink" title="5 环境变量"></a>5 环境变量</h3><ul>
+<li>HOME</li>
+<li>SHELL</li>
+<li>HISTSIZE</li>
+<li>RANDOM</li>
+<li>PATH</li>
+</ul>
+<h3 id="6-软件安装和配置"><a href="#6-软件安装和配置" class="headerlink" title="6 软件安装和配置"></a>6 软件安装和配置</h3><h4 id="6-1-yum"><a href="#6-1-yum" class="headerlink" title="6.1 yum"></a>6.1 yum</h4><ul>
+<li>yum update</li>
+<li>yum install / yum remove</li>
+<li>yum list / yum search</li>
+<li>yum makecache</li>
+</ul>
+<h4 id="6-2-rpm"><a href="#6-2-rpm" class="headerlink" title="6.2 rpm"></a>6.2 rpm</h4><ul>
+<li>rpm -ivh –force –nodeps</li>
+<li>rpm -e</li>
+<li>rpm -qa | grep</li>
+</ul>
+<h3 id="7-网络访问和管理"><a href="#7-网络访问和管理" class="headerlink" title="7 网络访问和管理"></a>7 网络访问和管理</h3><ol>
+<li>通过网络获取资源 - <strong>wget</strong>。<ul>
+<li>-b 后台下载模式</li>
+<li>-O 下载到指定的目录</li>
+<li>-r 递归下载</li>
+</ul>
+</li>
+<li>显示/操作网络配置（旧） - <strong>ipconfig</strong>。</li>
+<li>显示/操作网络配置（新） - <strong>ip</strong>。</li>
+<li>网络可达性检查 - <strong>ping</strong>。</li>
+<li>查看网络服务和端口 - <strong>netstat</strong>。</li>
+<li>安全文件拷贝 - <strong>scp</strong>。</li>
+<li>安全文件传输 - <strong>sftp</strong>。</li>
+</ol>
+<h3 id="8-课程学习"><a href="#8-课程学习" class="headerlink" title="8 课程学习"></a>8 课程学习</h3><ol>
+<li>文件系统的启动过程：<ul>
+<li><strong>BIOS –&gt; MBR –&gt; Boot loader –&gt; Init process –&gt; Done</strong></li>
+<li>BIOS检查设备 –&gt; 加载并启动MBR –&gt; 加载MBR中的bootloader（常见有LILO和GRUB两种） –&gt; 启动Linux内核 –&gt; 完成（现在控制权已交给内核）</li>
+</ul>
+</li>
+<li>硬链接和符号链接<ul>
+<li>硬链接（不同的文件名对应同一个inode，不能跨越文件系统，对应系统调用<strong>link</strong>）：<ul>
+<li><strong>ln</strong> 可以为文件创建硬链接，但不能为目录创建，硬链接并没有建立新文件</li>
+<li>创建硬链接后，文件的inode会被多个文件项共用</li>
+<li>文件的硬链接数可以在ls -l后的列表的第二列看到，无额外链接的文件的链接数为1</li>
+<li>硬链接可以理解为多个文件指向同一个物理地址，所以不能对目录做硬链接，也不可以在不同的文件系统之间做硬链接</li>
+</ul>
+</li>
+<li>软链接/符号链接（存储被链接文件的文件名与路径，可跨越文件系统，对应系统调用<strong>symlink</strong>）：<ul>
+<li><strong>ln -s</strong> 将一个路径名链接到一个文件</li>
+<li>软链接文件是一个文本文件，包含了链接时的源文件的路径名，而源文件才是实际包含数据的文件</li>
+<li>软链接文件在<strong>ls -l</strong>中第一列显示一个<strong>l</strong>，表示符号链接文件（硬链接的第一列依然是<strong>-</strong>，表示文件）</li>
+<li>软链接可以理解为快捷方式（通过它能迅速找到源文件，而不是直接找物理地址），它本身确实是一个新的文件，它的大小就是符号链接中路径的字节数，所以它具有和源文件不同的inode号</li>
+<li>软链接可以对目录进行，也可以在不同的文件系统之间做符号链接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件属性（<strong>ls -l</strong>）:文件类型 权限 硬链接数目 所有者 用户组 文件大小 修改时间 文件名</li>
+<li>umask命令与默认权限<ul>
+<li>umask命令用来设置限制新建文件权限的掩码</li>
+<li>当新文件创建时，其最初的权限由默认权限与umask掩码共同决定。文件的默认权限是666，即rw-rw-rw-，目录的默认权限是777，即rwxrwxrwx。而在此基础之上，umask设置的掩码将会从以上权限中把相应位置的权限拿走（即删去指定位的权限）</li>
+<li>如umask设置的掩码为022，那么新文件的权限上用户组和其他用户的write权限就会被拿走，也就是文件权限变成了644，即rw-r-r-，而新建文件夹的权限也变成了rwxr-xr-x，即755</li>
+<li>umask掩码的作用是“拿走”相应位置上的权限（不管之前有没有，最终这个位置没有权限）</li>
+<li>数字表示：<strong>umask</strong> 将会显示删掉的权限（如掩码022）</li>
+<li>符号表示：<strong>umask -S</strong> 将会显示剩下的权限（如u=rwx,g=rx,o=rx）</li>
+</ul>
+</li>
+<li>三种执行shell脚本的方法<ul>
+<li>作为可执行程序：<ul>
+<li><strong>chmod +x ./x.sh</strong> 使脚本具有可执行权限</li>
+<li><strong>./x.sh</strong> 执行脚本</li>
+</ul>
+</li>
+<li>作为解释器参数：<ul>
+<li><strong>sh x.sh</strong> 或 <strong>/bin/sh x.sh</strong></li>
+<li>这种方式不需要在脚本第一行指定解释器参数，即<strong>#!/bin/bash</strong></li>
+</ul>
+</li>
+<li><strong>source x.sh</strong> 或 <strong>. x.sh</strong></li>
+</ul>
+</li>
+<li>shell中的引号：<ul>
+<li>单引号：单引号中的任何字符都会原样输出，转义失败，变量也是无效的</li>
+<li>双引号：里面可以有变量，也可以出现转义字符（即$ 、``、 \将分别被bash解释）</li>
+</ul>
+</li>
+<li>两个接口：<ul>
+<li>用户与内核的接口：系统调用</li>
+<li>用户与操作系统的接口：shell</li>
+</ul>
+</li>
+<li>硬盘属于块设备 （block devices）</li>
+<li>找出 /etc/my.conf 文件属于哪个包 （package）：<strong>rpm -qf /etc/my.conf</strong></li>
+<li>用于改变 IDE 硬盘的设置：<strong>hdparm</strong></li>
+<li>列出定义在以后特定时间运行一次的所有任务：<strong>atq</strong></li>
+<li>改变命令提示符：<strong>set PS1=”[\u\w\t]\$” ; export PS1</strong></li>
+<li>/etc/passwd和/etc/shadow两个文件的权限：<strong>-rw-r–r–</strong> , <strong>-r————</strong></li>
+<li>查看Linux的启动信息：<strong>dmesg</strong></li>
+<li>显示系统中各个分区中inode的使用情况：<strong>df -i</strong></li>
+<li>显示 passwd 文件的结构：<strong>man 5 passwd</strong></li>
+<li>检测基本网络连接：<strong>netstat</strong></li>
+<li>网络服务的daemon是：<strong>netd</strong></li>
+<li>定义bash环境的用户文件是：<strong>.bashrc</strong> &amp; <strong>.bash_profile</strong></li>
+<li>卸载一个内核模块：<strong>rmmod</strong></li>
+<li>显示所有装载的模块：<strong>lsmod</strong></li>
+</ol>
+<h3 id="9-查缺补漏"><a href="#9-查缺补漏" class="headerlink" title="9 查缺补漏"></a>9 查缺补漏</h3><ol>
+<li><p>信号量属于SYSTEM V进程间通讯方式</p>
+</li>
+<li><p>Linux系统中，用户文件描述符0、1、2分别表示：标准输入、标准输出、标准错误输出</p>
+</li>
+<li><p>卸载一个软件包：rpm -e</p>
+</li>
+<li><p>关于i节点：</p>
+<ul>
+<li>i节点能描述文件占用的块数</li>
+<li>i节点描述了文件大小和指向数据块的指针</li>
+<li>通过i节点实现文件的逻辑结构和物理结构的转换</li>
+<li>这是<strong>错误</strong>的：<strong>i节点和文件是一一对应的</strong></li>
+</ul>
+</li>
+<li><p>在vi编辑器中的命令模式下，重复上一次对编辑的文本进行的操作，可使用 <strong>.</strong> 命令</p>
+</li>
+<li><p>Linux系统的进程类型：守护进程、交互进程、批处理进程</p>
+</li>
+<li><p>关于/etc/fstab文件描述：启动时按fstab文件描述内容加载文件系统</p>
+</li>
+<li><p>在Shell脚本中，用来读取文件内各个域的内容并将其赋值给Shell变量的命令是：<strong>read</strong></p>
+</li>
+<li><p>在Linux2.4.0版本中：</p>
+<ul>
+<li>进程有<strong>6</strong>种状态：可运行、可中断等待、不可中断等待、僵死、暂停、独占（替换了原来的交换）</li>
+<li>进程使用<strong>exit</strong>系统调用后进入僵死状态</li>
+</ul>
+</li>
+<li><p>在Linux 中管道分为<strong>2</strong>种类型，若创建或打开时获得的描述符存放在fd中，则fd[1]是<strong>管道写描述符</strong></p>
+</li>
+<li><p>Linux为用户提供的接口有：shell、XWINDOW、系统调用</p>
+</li>
+<li><p>超级块是描述<strong>文件系统属性</strong>信息的数据结构，索引节点是描述<strong>文件属性</strong>信息的数据结构</p>
+</li>
+<li><p>显示文件系统空间使用情况：<strong>df</strong> 命令</p>
+</li>
+<li><p>显示目录或文件占用磁盘空间容量：<strong>du</strong> 命令</p>
+</li>
+<li><p>命令组合<strong>（命令表）</strong>将<strong>建立新的子进程</strong>来执行命令</p>
+</li>
+<li><p>磁盘限额管理可以使用<strong>quota</strong>软件工具，其中硬限额的容量应该<strong>大于</strong>软限额</p>
+</li>
+<li><p>交换线程通过三种途径来缩减已使用的内存页面:</p>
+<ul>
+<li>减少buffer cache和page cache的大小</li>
+<li>换出系统V类型的内存页面</li>
+<li>换出或丢弃进程占用的页面</li>
+</ul>
+</li>
+<li><p>安装Linux系统对硬盘分区时，必须有两种分区类型：<strong>Linux原始分区（根分区）</strong> 和 <strong>Linux交换分区</strong></p>
+</li>
+<li><p>在Linux的两种链接文件中，只能实现对文件链接的一种方式是：<strong>软链接（符号链接）</strong></p>
+</li>
+<li><p>Linux主要采用了<strong>请求调页</strong>和<strong>写时复制</strong>两种动态内存管理技术实现了物理内存以On demand方式动态分配</p>
+</li>
+<li><p>对于<strong>System V</strong>类型的共享内存页面，Linux基于<strong>Clock</strong>算法决定哪些页面应当被换出物理内存</p>
+</li>
+<li><p>在Linux与中断相关的三个核心数据结构中，用做抽象的中断控制器的数据结构是<strong>hw_interrupt_type</strong>，它包含一系列处理中断控制器特有的操作</p>
+</li>
+<li><p>通过将<strong>request</strong>动态链入块设备控制结构blk_dev_struct，Linux设备管理器有效的实现了物理设备和缓冲区之间的异步读写通讯</p>
+</li>
+<li><p>归档与解压命令：</p>
+<ul>
+<li><p>压缩</p>
+<ul>
+<li>命令格式：<strong>tar -zcvf 压缩命令的目标文件 待压缩的源文件</strong></li>
+<li>例如：<strong>tar -zcvf wang.tar.gz /home/stud1/wang</strong>将/home/stud1/wang目录做归档压缩，压缩后生成wang.tar.gz文件，并将此文件保存到/home目录下</li>
+</ul>
+</li>
+<li><p>解压：</p>
+<ul>
+<li>命令格式：<strong>tar -zxvf 待解压文件</strong></li>
+<li>例如：<strong>tar -zxvf wang.tar.gz</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对于Shell脚本程序，若输入参数数量多于9个，则程序遍历每个参数可通过使用<strong>shift</strong>命令实现</p>
+</li>
+<li><p>在System V进程通讯方式中，ipc_perm结构描述对一个系统IPC对象的存取权限，而用于定位IPC对象的引用标志符key可以依据键值分成<strong>公有</strong>、<strong>私有</strong>两种类型</p>
+</li>
+<li><p>底半技术：</p>
+<ul>
+<li>把一个中断处理分为2部分：顶半部分和底半部分</li>
+<li>优势：<ul>
+<li>使中断的总延迟时间最小化</li>
+<li>加快对中断请求的响应速度</li>
+<li>合并某些中断处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Vi的工作模式</p>
+<ul>
+<li>三种工作模式：命令模式、输入模式、末行模式</li>
+<li>如何切换模式：在命令模式下输入a、A、i、I、o、O等命令之一可以进入输入模式，在输入模式下按Esc键回到命令模式；在命令模式下输入：进入末行模式，末行命令执行完后回到命令模式</li>
+</ul>
+</li>
+<li><p>Shell变量可以分为：用户自定义变量、环境变量、位置变量、特殊变量，其中<strong>位置变量</strong>是指命令行上传递给程序的参数</p>
+</li>
+<li><p>从内核实现的角度说明Linux进程共享文件的方式：</p>
+<ul>
+<li>进程通过多个file结构共享一个inode</li>
+<li>进程共享一个file结构</li>
+</ul>
+</li>
+<li><p>实时信号、非实时信号、可靠信号、不可靠信号：</p>
+<ul>
+<li>实时信号目前未用</li>
+<li>非实时信号编号1～31、0表示空信号，非实时信号没有排队机制，可能丢失</li>
+<li>不可靠信号0～31，不可靠信号每次处理完信号后，都将对信号的响应设置为默认动作，需要在结尾再次安装信号</li>
+<li>可靠信号32～63，可靠信号和不可靠信号的安装函数也不同，主要在于信号类型取值，而不在于操纵他们的API</li>
+</ul>
+</li>
+<li><p>Kswapd核心线程的动态特性：主要通过nr_async_pages参考free_pages_high和free_pages_low来判断交换数量和线程睡眠时间</p>
+<ul>
+<li>Nr_async_pages大于free_pages_high时每次释放6个页面，在free_pages_high和free_pages_low之间时释放3个，小于free_pages_low时不释放</li>
+<li>若Kswapd被唤醒后发现Nr_async_pages小于free_pages_low则睡眠时间加班，反之则逐步延长睡眠时间    </li>
+</ul>
+</li>
+<li><p>Linux通过i节点表将文件的逻辑结构和物理结构进行转换：</p>
+<ul>
+<li>i节点是一个64字节长的表，表中包含了文件的相关信息，其中有文件的大小、文件所有者、文件的存取许可方式以及文件的类型等重要信息</li>
+<li>在i节点表中最重要的内容是磁盘地址表。在磁盘地址表中有13个块号，文件将以块号在磁盘地址表中出现的顺序依次读取相应的块。若文件空间大于13块，则分别用1次、2次、3次间接块实现对数据块的定位</li>
+<li>此后，Linux文件系统通过把i节点和文件名进行连接，当需要读取该文件时，文件系统在当前目录表中查找该文件名对应的项，由此得到该文件相对应的i节点号，通过该i节点的磁盘地址表把分散存放的文件物理块连接成文件的逻辑结构</li>
+</ul>
+</li>
+<li><p>在Linux系统中运行下面程序，最多可产生多少个进程？画出进程家族树</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">main()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   fork();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   fork();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   fork();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>最多可以产生7个进程，家族树如下：</p>
+<p><img src="/assets/blogimg/fork.png" alt=""></p>
+</li>
+<li><p>统计文件<strong>file</strong>中所有包含字符串<strong>”WHU”</strong>的行数：<strong>grep WHU file | wc -l</strong></p>
+</li>
+<li><p>可以把两个文本文件合并成一个文件的命令是：<strong>cat</strong></p>
+</li>
+<li><p>为了统计文件系统中未用的磁盘空间，可以用命令：<strong>du</strong></p>
+</li>
+<li><p>Linux中内核进程init的进程标识符是：<strong>1</strong></p>
+</li>
+<li><p>proc文件系统存在于：<strong>内存</strong></p>
+</li>
+<li><p>只列出目录下的子目录：<strong>ls -F | grep /$</strong></p>
+</li>
+<li><p>统计某个目录下的文件数：<strong>ls -l * | grep “^-“ | wc -l</strong></p>
+</li>
+<li><p>统计某个目录下的目录数：<strong>ls -l * | grep “^d” | wc -l</strong></p>
+</li>
+<li><p>内核分为<strong>进程调度</strong>、<strong>内存管理</strong>、<strong>虚拟文件系统</strong>、<strong>网络接口</strong>、<strong>进程间通信</strong>等五个子系统</p>
+</li>
+<li><p>在Linux 中，进程的优先数值越<strong>小</strong>，其相应的优先权越<strong>高</strong></p>
+</li>
+<li><p>在Linux 中，用户账号包括<strong>超级用户</strong>、<strong>系统用户</strong>和<strong>普通用户</strong></p>
+</li>
+<li><p>信号与中断</p>
+<ul>
+<li>相似点<ul>
+<li>采用了相同的异步通信方式</li>
+<li>当检测出有信号或中断请求时，都暂停正在执行的程序而转去执行相应的处理程序</li>
+<li>都在处理完毕后返回到原来的断点</li>
+<li>对信号或中断都可进行屏蔽</li>
+</ul>
+</li>
+<li>区别<ul>
+<li>中断有优先级，而信号没有优先级，所有的信号都是平等的</li>
+<li>信号处理程序是在用户态下运行的，而中断处理程序是在核心态下运行</li>
+<li>中断响应是及时的，而信号响应通常都有较大的时间延迟</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Linux的引导程序：<strong>LILO和GRUB</strong></p>
+<ul>
+<li>LILO没有交互式命令界面，而Grub拥有</li>
+<li>LILO不支持网络引导，而Grub支持</li>
+<li>LILO将关于可以引导的操作系统位置的信息物理上存储在MBR中，如果修改了LILO配置文件，必须将LILO第一阶段引导加载程序重写到MBR。相对于Grub，这是一个更为危险的选择，因为错误配置的MBR可能会让系统无法引导。而使用Grub，如果配置文件配置错误，则只是默认转到Grub命令行界面。</li>
+</ul>
+</li>
+<li><p>在LINUX运行的7个级别中，X—WINDOWS图形系统的运行级别为：<strong>5</strong></p>
+</li>
+<li><p>选择 “文本登录方式” 设定系统开始运行级为：<strong>3</strong></p>
+</li>
+<li><p>若在文字界面下，需要键入何种指令才能进入图形界面（Xwindow）：<strong>startx</strong></p>
+</li>
+<li><p>Linux内核引导时，从文件<strong>/etc/fstab</strong>中读取要加载的文件系统</p>
+</li>
+<li><p>用来存放系统所需要的配置文件和子目录的目录是<strong>/etc</strong></p>
+</li>
+<li><p>关闭linux系统（不重新启动）使用的命令：<strong>halt</strong></p>
+</li>
+<li><p>该命令可以实现关机：<strong>init 0</strong></p>
+</li>
+<li><p>存放Linux基本命令的目录是：<strong>/bin</strong></p>
+</li>
+<li><p>在shell编程时，使用方括号表示测试条件的规则是：方括号两边必有<strong>空格</strong></p>
+</li>
+<li><p>当系统管理员需升级内核版本和改变系统硬件配置时，应<strong>重新编译内核</strong></p>
+</li>
+<li><p><strong>Slab分配器思想</strong></p>
+<ul>
+<li>小对象的申请和释放通过slab分配器来管理</li>
+<li>slab分配器有一组高速缓存，每个高速缓存保存同一种对象类型，如i节点缓存、PCB缓存等</li>
+<li>内核从它们各自的缓存中分配和释放对象。系统分配对象时就从slab中取得。首先从这个cache中部分满的slab中分配，如果没有这样的slab, 便从空的slab中分配，如果也没有，就创建一个新的slab来分配即可。由于每个对象在释放时几乎处于分配好并且初始化好的状态，还可以节省不少初始化的时间</li>
+<li>每种对象的缓存区由一连串slab构成，每个slab由一个或者多个连续的物理页面组成。这些页面种包含了已分配的缓存对象，也包含了空闲对象</li>
+</ul>
+</li>
+<li><p><strong>Linux系统进程调度的总体思想</strong></p>
+<p>实时进程优先于普通进程，实时进程以进程的紧急程度为优先顺序，普通进程以进程平等占用CPU时间为基本调度原则。</p>
+</li>
+<li><p><strong>Linux 内核的主要组成部分</strong></p>
+<ul>
+<li><p>进程调度负责控制进程对CPU的访问，调度程序使用一种策略确保所有的进程都能公平的访问CPU，并且确保内核在任意时刻能执行必要的硬件操作。</p>
+</li>
+<li><p>内存管理负责管理系统的物理内存，实现多进程安全享享计算机的内存。  </p>
+</li>
+<li><p>虚拟文件系统通过将各种设备抽象为一种公共接口，从而屏蔽了各种硬件设备的细节。虚拟文件系统可以分为逻辑文件系统和设备驱动程序两部分。</p>
+</li>
+<li><p>网络接口提供了对各种网络标准的存取和各种网络硬件的支持，实现了对各种网络标准和网络硬件的访问。网络接口可分为网络协议和网络驱动程序。网络协议部分负责实现每一种可能的网络传输协议。网络设备驱动程序负责与硬件设备通讯，每一种可能的硬件设备都有相应的设备驱动程序。</p>
+</li>
+<li><p>进程间通信子系统实现了系统内部进程间的多种通信机制。</p>
+</li>
+</ul>
+<p>这五个子系统互相依赖，但相对来说进程调度处在比较重要的地位。其他子系统需要挂起和恢复进程的运行都必须依靠进程调度子系统的参与。</p>
+</li>
+<li><p><strong>基于虚拟内存技术的程序执行两次映射</strong></p>
+<ul>
+<li>应用程序向虚拟内存映射：用虚拟地址为程序编址，映射到虚拟内存空间；确定其代码段、数据段和堆栈段的地址空间，系统以逻辑地址访问虚拟内存中的某个程序段</li>
+<li>把要运行的程序段复制到物理内存，映射到物理内存空间，确定程序的物理地址。虚拟内存逻辑地址与物理地址的对应记录表；系统自物理内存地址读取所需数据</li>
+</ul>
+</li>
+<li><p><strong>Buddy算法-伙伴算法</strong></p>
+<ul>
+<li>把内存中所有页面按照2n划分，其中n=0~5，每个内存空间按1个页面、2个页面、4个页面、8个页面、16个页面、32个页面进行六次划分。划分后形成了大小不等的存储块，称为页面块，简称页块。包含1个页面的页块称为1页块，包含2个页面的称为2页块，依此类推。每种页块按前后顺序两两结合成一对Buddy“伙伴”</li>
+<li>每个页块组用一个双向循环链表进行管理，共有６个链表，分别为1、2、4、8、16、32页块链表。分别挂到free_area[] 数组上</li>
+<li>内存分配时，系统按照Buddy算法，根据请求的页面数在free_area[]对应的空闲页块组中搜索。若请求页面数不是2的整数次幂，则按照稍大于请求数的2的整数次幂的值搜索相应的页面块组。当相应页块组中没有可使用的空闲页面块时就查询更大一些的页块组，在找到可用的空闲页面块后，分配所需页面</li>
+<li>当某一空闲页面块被分配后，若仍有剩余的空闲页面，则根据剩余页面的大小把它们加入到相应页块组中</li>
+<li>内存页面释放时，系统将其做为空闲页面看待。检查是否存在与这些页面相邻的其它空闲页块，若存在，则合为一个连续的空闲区按Buddy算法重新分组</li>
+</ul>
+</li>
+<li><p><strong>linux使用的进程间通信方式</strong></p>
+<ul>
+<li>管道（pipe）和有名管道（FIFO）</li>
+<li>信号（signal）</li>
+<li>消息队列：msgget可以创建一个新队列或打开一个存在的队列.  msgctl类似于驱动程序中的ioctl函数, 可对消息队列执行多种操作. 调用msgsnd将数据放到消息队列中. 调用msgrcv将从消息队列中取消息</li>
+<li>共享内存：linux进程调用shmget（Shared Memory GET，获取共享内存）来分配一个共享内存块。shmat（SHared Memory Attach，绑定到共享内存）。shmctl（”Shared Memory Control”，控制共享内存）函数会返回一个共享内存块的相关信息。同时 shmctl 允许程序修改这些信息</li>
+<li>信号量</li>
+<li>套接字（socket)</li>
+</ul>
+</li>
+<li><p>运行级别</p>
+<p>运行级别是操作系统当前运行的功能级别，从0到6有不同的功能，在/etc/inittab文件中定义。运行级别可以由超级用户通过 telinit 命令来转换，此命令可以将转换信号传递给init，告诉它切换到哪个运行级别。也可以通过修改/etc/inittab文件来进行缺省运行级别的修改。</p>
+<ul>
+<li>0 - 关机（千万不要把initdefault 设置为0 ）</li>
+<li>1 - 单用户模式，root权限，用于系统维护，禁止远程登陆</li>
+<li>2 - 多用户模式，但是没有 NFS </li>
+<li>3 - 完全多用户模式，标准运行级别，登录后进入命令行模式</li>
+<li>4 - 没有用到，保留</li>
+<li>5 - 多用户模式，X11控制台，登录后进入图形GUI模式</li>
+<li>6 - 重启（千万不要把initdefault 设置为6 ）</li>
+</ul>
+</li>
+</ol>
+<h3 id="11-Shell编程"><a href="#11-Shell编程" class="headerlink" title="11 Shell编程"></a>11 Shell编程</h3><ol>
+<li><p>以用户账号zheng，登录进入linux系统，查看当前登录到系统中的用户和当前系统运行的进程，再退出系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">login：zheng</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Password：口令</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">who</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">ps</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">Ctrl+D</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>在当前目录/home/zheng下新建一个目录back，将当前目录改为back，在back下新建2个长度为0的文件test1、test2，然后把test2移到其父目录中并改名为file12</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir back</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> back</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> touch  test1 test2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mv  test2   ../file2</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>统计当前目录/home/zheng下普通文件的数目并显示结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">find –<span class="built_in">type</span> f | wc –l</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>系统管理员需要增加一个新用户zheng，为其设置初始密码，锁定用户账号uly，并删除用户账号chang</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">useradd zheng</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">passwd  zheng</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">passwd –l uly</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">userdel chang</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>将/home/zheng目录下的所有文件打包压缩成/tmp/zheng.tar.gz，怎么做？从压缩包中恢复，又该怎么做？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">tar –zcvf  /tmp/zheng.tar.gz  /home/zheng</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">tar -zxvf /tmp/zheng.tar.gz</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>Shell程序添加一个新组为class1，添加属于这个组的30个用户，用户名形式为stdxx，xx从01到30</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">i=1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">groupadd class1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">while [ $i -le 30 ]								</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">do</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">if [ $i -le 9 ] ;then</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">USERNAME=stu0$&#123;i&#125;							</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">else</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">USERNAME=stu$&#123;i&#125;							</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">fi</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">useradd $USERNAME 							</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">mkdir /home/$USERNAME</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">chown -R $USERNAME /home/$USERNAME		</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">chgrp -R class1 /home/$USERNAME </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">i=$(($i + 1))	＃或let “i=i+1”					</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">done</span></pre></td></tr></table></figure>
+</li>
+<li><p>写一个Shell程序，接收用户从键盘输入的100个整数，求出其总和、最大值及最小值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">read max</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">min=$max</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sum=$max</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">i=1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">while [$i –lt 100]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">do</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	read  x </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	sum=`expr $sum + $x`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	if [ $max –lt  $x ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	then</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">		max=$x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">	fi</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	if [ $ x –lt  $min ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">	then</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">		min=$x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">	fi    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">	i=`expr $i + 1`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">echo "sum = $sum ;   max = $max    min = $min "</span></pre></td></tr></table></figure>
+</li>
+<li><p>在/home目录下查找文件名为<strong>.Profile</strong>的文件，找到后删除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find /home -name .profile -exec rm &#123;&#125; \;</span></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个用户，用户名为user02，所属私有组和标准组为stuff，用户家目录为/home/user2，用户登陆shell为/bin/bash</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">useradd –g stuff –G stuff -d /home/user2 -s /bin/bash user02</span></pre></td></tr></table></figure>
+</li>
+<li><p>写一个shell脚本，检查给出的串是否为回文（palindrome）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">echo "Enter string"</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">read str</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">len=`echo $str | wc -c`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">len=`expr $len - 1`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">l=`expr $len / 2`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">ctr=1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">flag=0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">while test $ctr -le $l</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">do</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">a=`echo $str | cut -c$ctr`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">b=`echo $str | cut -c$len`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">if test $a -ne $b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">then flag=1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">break</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">fi</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">ctr=`expr $ctr + 1`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">len=`expr $len - 1`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">if test $flag -eq 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">then echo "String is palindrome"</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">else echo "String not a palindrome"</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">fi</span></pre></td></tr></table></figure>
+</li>
+<li><p>用shell编写小九九乘法表程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">for i in 1 2 3 4 5 6 7 8 9</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">do</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	for j in 1 2 3 4 5 6 7 8 9</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	do</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	if ( test $j -le $i ) then</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">			echo -ne `expr $i \* $j` "\t"</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	else</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">		echo</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">			break </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">		fi </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">	done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">done</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="12-其他"><a href="#12-其他" class="headerlink" title="12 其他"></a>12 其他</h3><ol>
+<li><p>进程编程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ntimes=<span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[]) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> pid,ppid;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    int p_action( ), c_action( );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    signal(SIGUSR1 , p_action);  # 在父进程中为信号SIGUSR1绑定函数p_action</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">switch</span>(pid=fork( )) &#123;  # 创建子进程</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">case</span> <span class="number">-1</span>: perror(<span class="string">"fork failed?"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">				<span class="built_in">exit</span>(<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">case</span> <span class="number">0</span>: signal(SIGUSR1,c_action);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">				ppid=getppid( );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">				<span class="keyword">for</span> ( ; ; ) ;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">default</span>: &#123; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">			<span class="keyword">for</span>( ; ; ) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">					pause;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">					sleep(<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">					kill(pid,SIGUSR1);  # 向子进程发送信号SIGUSR1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">			&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">p_action( ) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">printf</span>(<span class="string">"parent caught signal #%d\n"</span>,++ntimes);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">c_action( ) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">printf</span>(<span class="string">"child caught signal #%d\n"</span>,++ntimes);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> ppid;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    ppid = getppid();  # 获取父进程的PID</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    kill(ppid, SIGUSR1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    sleep(<span class="number">3</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>父进程无限循环向子进程发送信号，子进程收到信号后向父进程发送相同信号，父子进程之间各自记录全局变量的变化，前6行结果如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">child caught signal <span class="comment">#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">parent caught signal <span class="comment">#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">child caught signal <span class="comment">#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">parent caught signal <span class="comment">#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">child caught signal <span class="comment">#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">parent caught signal <span class="comment">#3</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>linux 进程及管道应用实例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> n,fd[<span class="number">2</span>];  <span class="comment">// 这里的fd是文件描述符的数组，用于创建管道做准备	</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">pid_t</span> pid;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">char</span> <span class="built_in">line</span>[<span class="number">100</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>(pipe(fd)&lt;<span class="number">0</span>)  <span class="comment">// 创建管道</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">printf</span>(<span class="string">"pipe create error/n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>((pid=fork())&lt;<span class="number">0</span>)  <span class="comment">// 利用fork()创建新进程</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">printf</span>(<span class="string">"fork error/n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid&gt;<span class="number">0</span>)&#123;  <span class="comment">// 这里是父进程，先关闭管道的读出端，然后在管道的写端写入“hello world"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">close</span>(fd[<span class="number">0</span>]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">write</span>(fd[<span class="number">1</span>],<span class="string">"hello word/n"</span>,<span class="number">11</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">close</span>(fd[<span class="number">1</span>]);  <span class="comment">// 这里是子进程，先关闭管道的写入端，然后在管道的读出端读出数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        n= <span class="built_in">read</span>(fd[<span class="number">0</span>],<span class="built_in">line</span>,<span class="number">100</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">write</span>(STDOUT_FILENO,<span class="built_in">line</span>,n);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://crhuang321.github.io/2018/10/25/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ck3q2qq3k0003v4lfcrsegktk" class="article-share-link" data-share="baidu" data-title="Linux学习笔记">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/25/%E6%AC%A7%E6%B4%B2%E8%BF%AA%E6%96%AF%E5%B0%BC%E7%9A%84%E9%94%99%E8%AF%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          欧洲迪斯尼的错误
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/08/%E7%9B%B4%E9%9D%A2%E6%8C%91%E6%88%98%EF%BC%8C%E9%87%8D%E5%BB%BA%E6%88%98%E7%95%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">直面挑战，重建战略</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+    </div>
+    <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/Video-Captioning/" style="font-size: 10px;">Video Captioning</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 17.14px;">操作系统</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 12.86px;">深度学习</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" style="font-size: 18.57px;">论文阅读笔记</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 10px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.71px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/Video-Captioning/">Video Captioning</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/">机器学习术语表</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">排序算法汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">蚁群算法解决旅行商问题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">免疫算法解决旅行商问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

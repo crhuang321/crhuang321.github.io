@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Video Captioning | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为一张图片产生一个描述被称为image caption任务，为一个视频产生一个描述成为vedio caption，但视频可以理解为在时间上有连续性的一组图片，因此可以理解成为一组图片产生一个描述。Vedio caption是属于对vedio analysis的高层语义分析。描述一般描述两个方向，属性和相互关系。">
+<meta name="keywords" content="Video Captioning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Captioning">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2019&#x2F;09&#x2F;19&#x2F;Video-Captioning&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="为一张图片产生一个描述被称为image caption任务，为一个视频产生一个描述成为vedio caption，但视频可以理解为在时间上有连续性的一组图片，因此可以理解成为一组图片产生一个描述。Vedio caption是属于对vedio analysis的高层语义分析。描述一般描述两个方向，属性和相互关系。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;VideoCaption.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;videocaption1.png">
+<meta property="og:updated_time" content="2019-12-03T14:56:32.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;VideoCaption.jpeg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Video-Captioning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/Video-Captioning/" class="article-date">
+  <time datetime="2019-09-19T07:17:52.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Video Captioning
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为一张图片产生一个描述被称为image caption任务，为一个视频产生一个描述成为vedio caption，但视频可以理解为在时间上有连续性的一组图片，因此可以理解成为一组图片产生一个描述。Vedio caption是属于对vedio analysis的高层语义分析。描述一般描述两个方向，属性和相互关系。</p>
+<a id="more"></a>
+
+<h2 id="三种基本方法"><a href="#三种基本方法" class="headerlink" title="三种基本方法"></a>三种基本方法</h2><ul>
+<li>基于模版的方法：较为简单，caption质量在很大程度上取决于句子的模板，句子用句法结构生成，多样性较差。</li>
+<li>基于检索的方法：一般来说，这个方法在固定场景内的视频中是有效的，因为嵌入空间可以很好地推广，并且更丰富的模型结构提高了性能。 然而，当遇到以前从未见过的情况的视频时，效果会很差。 此外，由于嵌入是固定长度的，因此它限制了视频和文本描述可以携带的信息量。</li>
+<li>基于编码的方法： 更正式地说，这些工作提出的框架是一个编码器 - 解码器结构，它将视频编码为语义表示特征向量，然后解码为自然语言。</li>
+</ul>
+<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><h3 id="3D卷积"><a href="#3D卷积" class="headerlink" title="3D卷积"></a>3D卷积</h3><ul>
+<li>由于视频帧之间具有时间连续性，普通的2D卷积不能够充分表达这个特性，因此把相邻的几个帧合在一起组成一个具有三个维度的输入向量，同时在这三个维度进行卷积。</li>
+<li>3D卷积也只是一种增加时间信息的补充手段，实际使用中2D卷积的结果+3D卷积结果fusion一起的效果更好。</li>
+<li>3D CNN模型的主要特性有：<ul>
+<li>1）通过3D卷积操作核去提取数据的时间和空间特征，在CNN的卷积层使用3D卷积。</li>
+<li>2）3D CNN模型可以同时处理多幅图片，达到附加信息的提取。</li>
+<li>3）融合时空域的预测。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Attention机制"><a href="#Attention机制" class="headerlink" title="Attention机制"></a>Attention机制</h3><p>两种attention机制：软注意力机制（soft-attention）和硬注意力机制（hard-attention）。软注意力机制对每一个图像区域学习一个大小介于0与1之间的注意力权重，其和为1，再将各图像区域进行加权求和。硬注意力机制则将最大权重置为1，而将其他区域权重置0，以达到仅注意一个区域的目的。在实际的应用中软注意力机制得到了更广泛的应用。由于其良好的效果和可解释性，attention机制已经成为一种主流的模型构件。</p>
+<p><a href="https://www.cnblogs.com/ydcode/p/11038064.html" target="_blank" rel="noopener">浅谈 Attention 机制的理解</a></p>
+<h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p><a href="https://blog.csdn.net/gzj_1101/article/details/79376798" target="_blank" rel="noopener">LSTM原理及实现</a></p>
+<p><a href="https://www.cnblogs.com/bonelee/p/7715131.html" target="_blank" rel="noopener">LSTM入门学习——结合《LSTM模型》文章看</a></p>
+<h2 id="Faster-R-CNN-Model"><a href="#Faster-R-CNN-Model" class="headerlink" title="Faster R-CNN Model"></a>Faster R-CNN Model</h2><p><a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">一文读懂Faster RCNN</a></p>
+<h3 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h3><p><a href="https://blog.csdn.net/u013181595/article/details/80990930" target="_blank" rel="noopener">ResNet介绍</a></p>
+<h2 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h2><p><img src="/assets/blogimg/VideoCaption.jpeg" alt=""></p>
+<p>整体分为三部分。</p>
+<ul>
+<li>第一部分抽取视频特征，有2D卷积帧抽取，3D卷积，以及2D卷积和3D卷积结合的方式</li>
+<li>第二部分对抽取出的视频特征进行处理，又称为encoder，有attention机制，直接pooling，LSTM以及多层级的encoder等，这部分的处理目的一般是为了考虑视频帧之间的时间连续性进行处理。</li>
+<li>第三部分就是就是常规的的decoder对编码信息进行解码翻译，有LSTM和GRU等。</li>
+</ul>
+<p>一般情况下大都只是对第一部分和第二部分，重点在于如何充分考虑视频帧之间的的时间特性来抽取特征和对于抽取出来的特征如何进行更好的再编码。也有用强化学习做video captioning，另18CVPR提出四部分的video caption，多了一个reconstructor部分，达到了目前的state-of-the-art。</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>首先介绍一下近几年最常用的两个数据库。</p>
+<p><a href="http://2016.ms-multimedia-challenge.com/challenge" target="_blank" rel="noopener">MSR-VTT dataset:</a> 该数据集为ACM Multimedia 2016 的 Microsoft Research - Video to Text (MSR-VTT) Challenge。该数据集包含10000个视频片段（video clip），被分为训练，验证和测试集三部分。每个视频片段都被标注了大概20条英文句子。此外，MSR-VTT还提供了每个视频的类别信息（共计20类），这个类别信息算是先验的，在测试集中也是已知的。同时，视频都是包含音频信息的。该数据库共计使用了四种机器翻译的评价指标，分别为：METEOR, BLEU@1-4,ROUGE-L,CIDEr。</p>
+<p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=52422&from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fdownloads%2F38cf15fd-b8df-477e-a4e4-a4680caa75af%2Fdefault.aspx" target="_blank" rel="noopener">YouTube2Text dataset</a>(or called MSVD dataset):该数据集同样由Microsoft Research提供。该数据集包含1970段YouTube视频片段（时长在10-25s之间），每段视频被标注了大概40条英文句子。</p>
+<p>可以看出，这两个数据库都是trimmed video clip 到 sentences的翻译。而这两年的论文基本上使用这两个数据库为主，说明目前的研究还主要集中在trimmed video clip 到 sentences的翻译。</p>
+<h2 id="任务关键点分析"><a href="#任务关键点分析" class="headerlink" title="任务关键点分析"></a>任务关键点分析</h2><p>video captioning任务可以理解为视频图像序列到文本序列的seq2seq任务。在近年的方法中，大部分文章都使用了LSTM来构造encoder-decoder结构，即使用lstm encoder来编码视频图像序列的特征，再用lstm decoder解码出文本信息。这样的video captioning模型结构最早在ICCV2015的”Sequence to Sequence – Video to Text”一文中提出，如下图所示。</p>
+<p><img src="/assets/blogimg/videocaption1.png" alt="img"></p>
+<p>基于上图中的结构，构造一个encoder-decoder结构的模型主要包括几个关键点：</p>
+<ol>
+<li>输入特征：即如何提取视频中的特征信息，在很多篇文章中都使用了多模态的特征。主要包括如下几种：</li>
+</ol>
+<p>基于视频图像的信息：包括简单的用CNN（VGGNet, ResNet等）提取图像(spatial)特征，用action recognition的模型(如C3D)提取视频动态(spatial+temporal)特征</p>
+<p>基于声音的特征：对声音进行编码，包括BOAW（Bag-of-Audio-Words)和FV(Fisher Vector)等</p>
+<p>先验特征：比如视频的类别，这种特征能提供很强的先验信息</p>
+<p>基于文本的特征：此处基于文本的特征是指先从视频中提取一些文本的描述，再將这些描述作为特征，来进行video captioning。这类特征我看到过两类，一类是先对单帧视频进行image captioning,将image captioning的结果作为video captioning的输入特征，另外一类是做video tagging，将得到的标签作为特征。</p>
+<p>2.encoder-decoder构造：虽然大部分工作都是用lstm做encoder-decoder，但各个方法的具体配置还是存在着一定的差异。</p>
+<p>3.输出词汇的表达：主要包括两类，一类是使用Word2Vec这种词向量表示，另外就是直接使用词袋表示。</p>
+<p>4.其它部分：比如训练策略，多任务训练之类的。</p>
+<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><h3 id="BLEU"><a href="#BLEU" class="headerlink" title="BLEU"></a>BLEU</h3><p>bleu是一种文本评估算法，它是用来评估机器翻译跟专业人工翻译之间的对应关系，核心思想就是机器翻译越接近专业人工翻译，质量就越好，经过bleu算法得出的分数可以作为机器翻译质量的其中一个指标。</p>
+<ul>
+<li>优点：方便、快速，结果比较接近人类评分。</li>
+<li>缺点：<ul>
+<li>不考虑语言表达（语法）上的准确性；</li>
+<li>测评精度会受常用词的干扰；</li>
+<li>短译句的测评精度有时会较高；</li>
+<li>没有考虑同义词或相似表达的情况，可能会导致合理翻译被否定；<br>BLEU本身就不追求百分之百的准确性，也不可能做到百分之百，它的目标只是给出一个快且不差的自动评估解决方案。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Meteor"><a href="#Meteor" class="headerlink" title="Meteor"></a>Meteor</h3><p>METEOR标准于2004年由Lavir发现在评价指标中召回率的意义后提出[3]，他们的研究表明，召回率基础上的标准相比于那些单纯基于精度的标准(如BLEU)，其结果和人工判断的结果有较高相关性；METEOR测度基于单精度的加权调和平均数和单字召回率，其目的是解决一些BLEU标准中固有的缺陷；METEOR也包括其他指标没有发现一些其他功能，如同义词匹配等；计算METEOR需要预先给定一组校准(alignment)m，而这一校准基于WordNet的同义词库，通过最小化对应语句中连续有序的块(chunks)ch来得出。和BLEU不同，METEOR同时考虑了基于整个语料库上的准确率和召回率，而最终得出测度；</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/weixin_43624538/article/details/87863463" target="_blank" rel="noopener">Video captioning——Video Analysis视频to文字描述任务</a><br><a href="https://blog.csdn.net/sinat_35177634/article/details/88568491" target="_blank" rel="noopener">视频描述（video caption）历年突破性论文总结</a><br><a href="http://www.cvmart.net/community/article/detail/41" target="_blank" rel="noopener">Video Analysis 相关领域解读之Video Captioning(视频to文字描述)</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://crhuang321.github.io/2019/09/19/Video-Captioning/" data-id="ck3q2qq46000vv4lf3is0ezgo" class="article-share-link" data-share="baidu" data-title="Video Captioning">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Video-Captioning/" rel="tag">Video Captioning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">机器学习术语表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+    </div>
+    <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/Video-Captioning/" style="font-size: 10px;">Video Captioning</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 17.14px;">操作系统</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 12.86px;">深度学习</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" style="font-size: 18.57px;">论文阅读笔记</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 10px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.71px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/Video-Captioning/">Video Captioning</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/">机器学习术语表</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">排序算法汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">蚁群算法解决旅行商问题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">免疫算法解决旅行商问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

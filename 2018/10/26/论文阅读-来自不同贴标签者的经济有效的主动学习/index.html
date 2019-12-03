@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：来自不同贴标签者的经济有效的主动学习 | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Cost-Effective Active Learning from Diverse Labelers">
+<meta name="keywords" content="论文阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：来自不同贴标签者的经济有效的主动学习">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2018&#x2F;10&#x2F;26&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%9D%A5%E8%87%AA%E4%B8%8D%E5%90%8C%E8%B4%B4%E6%A0%87%E7%AD%BE%E8%80%85%E7%9A%84%E7%BB%8F%E6%B5%8E%E6%9C%89%E6%95%88%E7%9A%84%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="Cost-Effective Active Learning from Diverse Labelers">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-03T12:44:49.800Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读-来自不同贴标签者的经济有效的主动学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%9D%A5%E8%87%AA%E4%B8%8D%E5%90%8C%E8%B4%B4%E6%A0%87%E7%AD%BE%E8%80%85%E7%9A%84%E7%BB%8F%E6%B5%8E%E6%9C%89%E6%95%88%E7%9A%84%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2018-10-26T05:22:56.000Z" itemprop="datePublished">2018-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：来自不同贴标签者的经济有效的主动学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cost-Effective Active Learning from Diverse Labelers</p>
+<a id="more"></a>
+
+<h3 id="研究的问题"><a href="#研究的问题" class="headerlink" title="研究的问题"></a>研究的问题</h3><p>本文提出了一种新的主动选择标准来评估实例-标签对的成本效益，实现了在保证所选实例能够有效改进分类模型的基础上最大化的降低标记成本。 </p>
+<h3 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h3><p>传统的主动学习中，仅仅通过一个标记者来对实例样本做标记，但这不满足实际应用需求。实际应用中往往采用多标记者的方式。但是不同标记者拥有不同的标记精度和成本，也就是说不同的标记者拥有各自擅长和不擅长的标记领域，我们应该尽可能让他们参与各自最擅长的领域。本文正是从这一角度着手，提出了这种最大成本效益的实用的多标记者参与的标记方法。 </p>
+<h3 id="先进性与贡献"><a href="#先进性与贡献" class="headerlink" title="先进性与贡献"></a>先进性与贡献</h3><p>说选取的实例有利于改进分类模型；选取的标记者应用于各自擅长的领域；低成本。总体来说，实现了为每个实例自适应地选择最具成本效益的标记者。 </p>
+<h3 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h3><ol>
+<li>输入：规格较小的已标记实例样本集L，大量未标记样本集U，所有标记者对L的标记Y’ </li>
+<li>初始化：计算所有标记者的的Cost </li>
+<li>循环：对于U中的每一个实例样本xj和A中的每一个标记者ai <ul>
+<li>计算xj的不确定性 </li>
+<li>计算ai对xj标记精确度的预测值 </li>
+<li>计算方案（xj，ai）的成本效益 </li>
+</ul>
+</li>
+<li>选择最大成本效益的实例-标记者对（x*，a*） </li>
+<li>A*对x*做出标记y*</li>
+<li>将最大成本效益的实例-标记者对（x*，a*）放入集合L，并将x*从U中除去 </li>
+<li>训练分类模型并在测试集上评估 </li>
+<li>返回步骤3，直到超出Cost预算或者达到了要求对精度 </li>
+</ol>
+<h3 id="优缺点及思考"><a href="#优缺点及思考" class="headerlink" title="优缺点及思考"></a>优缺点及思考</h3><p>本文提出了一种对于多标记者参与的主动学习模型的改进方法，即让具有不同专业知识的标记者标记自己最擅长领域内的未标记样本实例，这样可以达到在满足精确度要求情况下最小的成本开销。 </p>
+<p>该方法的最大先进性在于专业领域划分，与“分工”思想一致，仅让每个标记者参与自己最擅长领域的标记工作。因为每个标记者每进行一次标记的cost固定，因此提前计算好每个标记者的cost可以加速整个过程的进度。</p>
+<p>2018.10.22 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://crhuang321.github.io/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%9D%A5%E8%87%AA%E4%B8%8D%E5%90%8C%E8%B4%B4%E6%A0%87%E7%AD%BE%E8%80%85%E7%9A%84%E7%BB%8F%E6%B5%8E%E6%9C%89%E6%95%88%E7%9A%84%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0/" data-id="ck3q2qq5h003sv4lf4jmfeuav" class="article-share-link" data-share="baidu" data-title="论文阅读：来自不同贴标签者的经济有效的主动学习">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/26/%E6%9C%80%E8%BF%91%E7%82%B9%E5%AF%B9%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          最近点对问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%92%8C%E5%AF%86%E5%BA%A6%E7%9A%84%E6%9C%89%E6%BA%90%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%A1%88%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%AD%A3%E6%97%A0%E6%A0%87%E8%AE%B0%E5%A4%9A%E5%85%83%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E7%9A%84%E5%88%86%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：基于不确定性和密度的有源半监督学习方案，用于正无标记多元时间序列的分类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+    </div>
+    <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/Video-Captioning/" style="font-size: 10px;">Video Captioning</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 17.14px;">操作系统</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 12.86px;">深度学习</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" style="font-size: 18.57px;">论文阅读笔记</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 10px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.71px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/Video-Captioning/">Video Captioning</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/">机器学习术语表</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">排序算法汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">蚁群算法解决旅行商问题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">免疫算法解决旅行商问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

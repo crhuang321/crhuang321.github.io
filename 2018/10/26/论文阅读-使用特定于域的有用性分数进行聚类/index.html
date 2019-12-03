@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：使用特定于域的有用性分数进行聚类 | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Clustering with Domain-Specific Usefulness Scores">
+<meta name="keywords" content="论文阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：使用特定于域的有用性分数进行聚类">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2018&#x2F;10&#x2F;26&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9A%E4%BA%8E%E5%9F%9F%E7%9A%84%E6%9C%89%E7%94%A8%E6%80%A7%E5%88%86%E6%95%B0%E8%BF%9B%E8%A1%8C%E8%81%9A%E7%B1%BB&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="Clustering with Domain-Specific Usefulness Scores">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-03T12:42:30.216Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读-使用特定于域的有用性分数进行聚类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9A%E4%BA%8E%E5%9F%9F%E7%9A%84%E6%9C%89%E7%94%A8%E6%80%A7%E5%88%86%E6%95%B0%E8%BF%9B%E8%A1%8C%E8%81%9A%E7%B1%BB/" class="article-date">
+  <time datetime="2018-10-26T05:07:57.000Z" itemprop="datePublished">2018-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：使用特定于域的有用性分数进行聚类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Clustering with Domain-Specific Usefulness Scores</p>
+<a id="more"></a>
+
+<h3 id="研究的问题"><a href="#研究的问题" class="headerlink" title="研究的问题"></a>研究的问题</h3><p>对数据集对聚类算法通常有好多种，但最终聚类结果的好坏取决于该领域专业人员的评价与认可。因此本文着力研究在给定数据集专业评分情况下的有用性聚类问题。 </p>
+<h3 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h3><p>好的聚类算法必须通过专业领域的认可，其聚类结果才是有意义的。目前的很多聚类方法都是基于实例级的，比如监督分类和半监督分类。很多时候，我们无法得到样本数据的准确标记，只能根据该领域内专家对样本点的评分来完成聚类任务。因此本文的研究重点是基于专家评分来完成有用性聚类任务。 </p>
+<h3 id="先进性与贡献"><a href="#先进性与贡献" class="headerlink" title="先进性与贡献"></a>先进性与贡献</h3><p>本文提出了一种新的结合了领域知识的聚类方法，即我们对数据集做出聚类需要根据该领域内专家的有用性评分来完成。本文采用联合优化聚类解决方案，结合谱算法和HSIC方法综合考量聚类质量和有用性，这使得我们可以得到限制在高质量自然聚类和专家关心的子空间下的聚类结果。 </p>
+<h3 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h3><ol>
+<li>首先准备数据： <ul>
+<li>n x d的数据集X（n个样本、d个属性），领域专家提供的n x 1评分矩阵s </li>
+<li>最终聚类数k，数据集核函数kc，评分核函数ks，衡量质量与有用性的权重µ </li>
+<li>随机初始化的映射矩阵W^（0）（d x q，用来降维），最大迭代次数T，收敛精度ε </li>
+</ul>
+</li>
+<li>计算评分s的核矩阵Ks，开始t = 0 : T的迭代，每次迭代中： <ul>
+<li>让W=W^（t），优化聚类分配矩阵U；用W^（t）和U^（t）计算本次目标函数F^（t） </li>
+<li>让U=U^（t），优化映射矩阵W；用W^（t+1）计算下一次目标函数F^（t+1） </li>
+<li>计算收敛度r（t）=| F^（t+1）- F^（t）| / | F^ t | </li>
+<li>判断是否收敛：当 || W ^ (t+1) – W^ t ||_F &lt; ε  and r^（t） &lt; ε 时，结束迭代；否则继续迭代 </li>
+</ul>
+</li>
+<li>得到最优映射矩阵Wopt  = W^（t），并计算子空间XWopt的核矩阵K </li>
+<li>根据核矩阵K，用谱聚类算法得到k个类别的聚类结果以及样本的标记Y </li>
+</ol>
+<h3 id="优缺点及思考"><a href="#优缺点及思考" class="headerlink" title="优缺点及思考"></a>优缺点及思考</h3><p>本文提出的基于域相关分数的有用性聚类框架，能够满足不同领域的特殊聚类需求。通过综合考量聚类质量与有用性，得到该领域专家关心的聚类结果。该方法没有直接使用原始数据集，而是通过梯度下降得到一个最优的映射矩阵，通过降维处理得到的新矩阵来完成分类任务，这使得我们在忽略一些相关性不大的属性的同时，最大化地利用了我们最关心的属性。通过与其他聚类算法做比较，该方法的聚类结果最令相关领域专家满意。 </p>
+<p>通过任意随机初始化得到的初始正交映射矩阵W，通常会得到局部最小值。为了避免局部最小、达到全剧最优，我们不得不多次初始化W，并进行多次实验，最终选取最小的W作为我们的最佳正交映射矩阵。在优化聚类分配矩阵时，需要分解拉普拉斯矩阵，这将带来巨大的时间复杂度，我们可以对该方法做进一步改进，例如使用组合多重网格求解器来优化时间复杂度。该方法的进一步研究可着力于如何有效得出全局最优解。 </p>
+<p>2018.10.1 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://crhuang321.github.io/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9A%E4%BA%8E%E5%9F%9F%E7%9A%84%E6%9C%89%E7%94%A8%E6%80%A7%E5%88%86%E6%95%B0%E8%BF%9B%E8%A1%8C%E8%81%9A%E7%B1%BB/" data-id="ck3q2qq5f003lv4lfgd9x7fvz" class="article-share-link" data-share="baidu" data-title="论文阅读：使用特定于域的有用性分数进行聚类">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E9%80%9A%E8%BF%87%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%B8%E5%BF%83%E9%9B%86%E8%BF%9B%E8%A1%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84k-Means%E8%81%9A%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          论文阅读：通过轻量级核心集进行可扩展的k-Means聚类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E7%BA%A6%E6%9D%9F%E8%A7%84%E5%88%92%E7%9A%84%E6%9C%80%E5%B0%8F%E8%81%9A%E7%B1%BB%E4%BF%AE%E6%94%B9%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：基于约束规划的最小聚类修改框架</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+    </div>
+    <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/Video-Captioning/" style="font-size: 10px;">Video Captioning</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 17.14px;">操作系统</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 12.86px;">深度学习</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" style="font-size: 18.57px;">论文阅读笔记</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 10px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.71px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/Video-Captioning/">Video Captioning</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/">机器学习术语表</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">排序算法汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">蚁群算法解决旅行商问题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">免疫算法解决旅行商问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

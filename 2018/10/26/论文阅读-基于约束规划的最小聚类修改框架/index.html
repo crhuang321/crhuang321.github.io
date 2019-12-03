@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：基于约束规划的最小聚类修改框架 | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Framework for Minimal Clustering Modification via Constraint Programming">
+<meta name="keywords" content="论文阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：基于约束规划的最小聚类修改框架">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2018&#x2F;10&#x2F;26&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E7%BA%A6%E6%9D%9F%E8%A7%84%E5%88%92%E7%9A%84%E6%9C%80%E5%B0%8F%E8%81%9A%E7%B1%BB%E4%BF%AE%E6%94%B9%E6%A1%86%E6%9E%B6&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="A Framework for Minimal Clustering Modification via Constraint Programming">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-03T12:41:44.914Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读-基于约束规划的最小聚类修改框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E7%BA%A6%E6%9D%9F%E8%A7%84%E5%88%92%E7%9A%84%E6%9C%80%E5%B0%8F%E8%81%9A%E7%B1%BB%E4%BF%AE%E6%94%B9%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time datetime="2018-10-26T05:03:22.000Z" itemprop="datePublished">2018-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：基于约束规划的最小聚类修改框架
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A Framework for Minimal Clustering Modification via Constraint Programming</p>
+<a id="more"></a>
+
+<h3 id="研究的问题"><a href="#研究的问题" class="headerlink" title="研究的问题"></a>研究的问题</h3><p>好的聚类算法通常会受到异常属性的影响，本文着力研究如何用一种低成本且简单有效的方式来优化受到异常属性干扰的聚类，实现每个聚类的最大凝聚力。 </p>
+<h3 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h3><p>一个比较好的聚类算法可能会因为少数属性（坏/异常的属性值）的影响而表现糟糕，花费大量成本重新聚类不是个好主意，更好的方法是通过删除不需要的属性来最低限度地修改聚类。之前的研究仅仅着重于聚类算法的好坏，将聚类结果归之于算法的好坏，而本文的研究重点是基于约束编程框架进一步优化那些好的聚类算法的聚类结果。 </p>
+<h3 id="先进性与贡献"><a href="#先进性与贡献" class="headerlink" title="先进性与贡献"></a>先进性与贡献</h3><p>本文提出的方法从最初的聚类算法开始，基于约束编程框架，在删除不良属性的同时对其进行最小程度的修改，这省去了重新聚类的成本。对于其他现成聚类簇，该方法也可以做出进一步优化。同时，这种方法可以为任何聚类算法提供反馈。通过生成新的最小修改聚类，同时保留大部分原始数据，使得我们不用担心信息的过度丢失。  </p>
+<h3 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h3><ol>
+<li>首先多次使用某种聚类算法对原始数据集进行聚类，得到最佳的聚类集群。 </li>
+<li>接着计算所有属性在所有类中的直径，得到初始直径矩阵D（每行为一个类，每列为一个属性）。 </li>
+<li>观察计算结果并制定收紧策略： 修改后的直径矩阵D’[i, j] = m D[i, j]（其中m为修改参数，0&lt;m&lt;=1）。 </li>
+<li>计算约束条件“上限 – 下限 &lt;= D’”所需要的具体数值。每个类中关于每个属性的上限和下限： <ul>
+<li>上限：类中各个属性值与最小属性值之差的最大值，再加该类中的最小属性值 </li>
+<li>下限：类中各个属性值与最大属性值之差的最小值，再加该类中的最大属性值 </li>
+</ul>
+</li>
+<li>根据得到的约束条件，在约束编程框架中得到可行解，即一个进步了的聚类结果。 </li>
+<li>重新计算新的类直径矩阵，若对结果不满意可多次调整收紧策略，最终达到满意的聚类结果。 </li>
+</ol>
+<h3 id="优缺点及思考"><a href="#优缺点及思考" class="headerlink" title="优缺点及思考"></a>优缺点及思考</h3><p>本文所提出的聚类优化方法，是基于某种比较好的聚类算法，在不做重新聚类的情况下，基于约束编程框架最小限度的修改聚类，以达到各个聚类内的凝聚力最大的效果。这种方法需要我们提供反馈，即我们对聚类结果的评价，我们需要告诉程序应该修改哪一个类中的哪一个属性直径，以便于程序不去考虑那些异常属性对聚类的影响。 </p>
+<p>一种效果更好的方法是让类中的任意两点的属性距离都不大于我们限定的属性直径，但这样做将需要很大内存和CPU，这很低效。因此本文改进方法，仅仅限制类内属性的最大差距，这样在不影响优化效果的同时极大的提高了效率并节省类开支。 </p>
+<p>这种方法在实施的过程中会将那些受到不良属性影响的实例点移动到最适合他们的类中。基于约束编程框架，根据我们限定的约束条件，达到“类内距离最小、类间距离最大”的效果。 </p>
+<p>本文的研究重点是一步步缩紧约束条件，在约束编程框架下得到更好的可行解。那么进一步探索，是否可以找到一些方法，可以通过修改聚类或者聚类数量，达到一种更广泛和适用性更强的修改框架。 </p>
+<p>2018.9.24 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://crhuang321.github.io/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E7%BA%A6%E6%9D%9F%E8%A7%84%E5%88%92%E7%9A%84%E6%9C%80%E5%B0%8F%E8%81%9A%E7%B1%BB%E4%BF%AE%E6%94%B9%E6%A1%86%E6%9E%B6/" data-id="ck3q2qq5e003jv4lf9tgihx7y" class="article-share-link" data-share="baidu" data-title="论文阅读：基于约束规划的最小聚类修改框架">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9A%E4%BA%8E%E5%9F%9F%E7%9A%84%E6%9C%89%E7%94%A8%E6%80%A7%E5%88%86%E6%95%B0%E8%BF%9B%E8%A1%8C%E8%81%9A%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          论文阅读：使用特定于域的有用性分数进行聚类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-MP%E7%9B%B8%E5%BC%82%E6%80%A7%E5%BA%A6%E9%87%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：MP相异性度量</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+    </div>
+    <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/Video-Captioning/" style="font-size: 10px;">Video Captioning</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 17.14px;">操作系统</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 12.86px;">深度学习</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" style="font-size: 18.57px;">论文阅读笔记</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 10px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15.71px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/Video-Captioning/">Video Captioning</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/">机器学习术语表</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">排序算法汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">蚁群算法解决旅行商问题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">免疫算法解决旅行商问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
