@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>岭秋风</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://crhuang321.github.io/"/>
+  <updated>2019-12-03T14:56:32.591Z</updated>
+  <id>https://crhuang321.github.io/</id>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Video Captioning</title>
+    <link href="https://crhuang321.github.io/2019/09/19/Video-Captioning/"/>
+    <id>https://crhuang321.github.io/2019/09/19/Video-Captioning/</id>
+    <published>2019-09-19T07:17:52.000Z</published>
+    <updated>2019-12-03T14:56:32.591Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为一张图片产生一个描述被称为image caption任务，为一个视频产生一个描述成为vedio caption，但视频可以理解为在时间上有连续性的一组图片，因此可以理解成为一组图片产生一个描述。Vedio caption是属于对vedio analysis的高层语义分析。描述一般描述两个方向，属性和相互关系。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Video Captioning" scheme="https://crhuang321.github.io/tags/Video-Captioning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习术语表</title>
+    <link href="https://crhuang321.github.io/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/"/>
+    <id>https://crhuang321.github.io/2019/09/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9C%AF%E8%AF%AD%E8%A1%A8/</id>
+    <published>2019-09-07T01:21:19.000Z</published>
+    <updated>2019-12-03T14:40:20.723Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本术语表中列出了一般的机器学习术语和 TensorFlow 专用术语的定义。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://crhuang321.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>排序算法汇总</title>
+    <link href="https://crhuang321.github.io/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/"/>
+    <id>https://crhuang321.github.io/2019/07/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/</id>
+    <published>2019-07-01T00:56:29.000Z</published>
+    <updated>2019-12-03T14:39:09.300Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;排序算法汇总。动画演示：&lt;a href=&quot;https://mp.weixin.qq.com/s/FVOllQoELEK3rvjpdLAxIQ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;一份清晰又全面的排序算法攻略&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="算法" scheme="https://crhuang321.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>蚁群算法解决旅行商问题</title>
+    <link href="https://crhuang321.github.io/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/"/>
+    <id>https://crhuang321.github.io/2019/04/29/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/</id>
+    <published>2019-04-29T06:51:10.000Z</published>
+    <updated>2019-12-03T14:36:45.183Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/旅行推销员问题&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;什么是旅行商问题（TSP）？&lt;/a&gt;&lt;a href=&quot;https://www.wikiwand.com/zh-hans/蚁群算法&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;什么是蚁群算法？&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="算法" scheme="https://crhuang321.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免疫算法解决旅行商问题</title>
+    <link href="https://crhuang321.github.io/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/"/>
+    <id>https://crhuang321.github.io/2019/04/23/%E5%85%8D%E7%96%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/</id>
+    <published>2019-04-23T06:15:27.000Z</published>
+    <updated>2019-12-03T14:35:45.240Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/旅行推销员问题&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;什么是旅行商问题（TSP）？&lt;/a&gt;&lt;a href=&quot;https://baike.baidu.com/item/免疫算法/11066860&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;什么是免疫算法？&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="算法" scheme="https://crhuang321.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>遗传算法解决旅行商问题</title>
+    <link href="https://crhuang321.github.io/2019/04/22/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/"/>
+    <id>https://crhuang321.github.io/2019/04/22/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/</id>
+    <published>2019-04-22T05:11:52.000Z</published>
+    <updated>2019-12-03T14:34:17.049Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/旅行推销员问题&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;什么是旅行商问题（TSP）？&lt;/a&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/遗传算法&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;什么是遗传算法？&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="算法" scheme="https://crhuang321.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>朴素贝叶斯分类器</title>
+    <link href="https://crhuang321.github.io/2019/04/03/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8/"/>
+    <id>https://crhuang321.github.io/2019/04/03/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8/</id>
+    <published>2019-04-03T03:59:19.000Z</published>
+    <updated>2019-12-03T14:32:38.040Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;朴素贝叶斯法是基于贝叶斯定理与特征条件独立假设的分类方法。对于输入数据集，首先基于特征条件独立假设学习输入/输出的联合概率分布，然后基于此模型对给定的输入x，利用贝叶斯定理求出后验概率最大的输出y。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://crhuang321.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>卷积神经网络手写数字识别</title>
+    <link href="https://crhuang321.github.io/2019/04/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/"/>
+    <id>https://crhuang321.github.io/2019/04/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</id>
+    <published>2019-04-01T09:55:12.000Z</published>
+    <updated>2019-12-03T14:31:53.192Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;卷积神经网络手写数字识别（基于TensorFlow），数据：MNIST库（手写体数字库），包含55000张训练图片，每张图片分辨率是28×28，故训练网络输入应该是28×28=784个像素数据。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="深度学习" scheme="https://crhuang321.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建深度神经网络识别猫</title>
+    <link href="https://crhuang321.github.io/2019/03/20/%E6%90%AD%E5%BB%BA%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AF%86%E5%88%AB%E7%8C%AB/"/>
+    <id>https://crhuang321.github.io/2019/03/20/%E6%90%AD%E5%BB%BA%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AF%86%E5%88%AB%E7%8C%AB/</id>
+    <published>2019-03-20T03:02:31.000Z</published>
+    <updated>2019-12-03T14:30:45.353Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;搭建深度神经网络识别猫（Python手写）。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="深度学习" scheme="https://crhuang321.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建简单的神经网络</title>
+    <link href="https://crhuang321.github.io/2019/03/20/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <id>https://crhuang321.github.io/2019/03/20/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</id>
+    <published>2019-03-20T02:41:09.000Z</published>
+    <updated>2019-12-03T14:29:35.164Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;搭建简单的神经网络（Python手写）。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="深度学习" scheme="https://crhuang321.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>词云</title>
+    <link href="https://crhuang321.github.io/2019/03/19/%E8%AF%8D%E4%BA%91/"/>
+    <id>https://crhuang321.github.io/2019/03/19/%E8%AF%8D%E4%BA%91/</id>
+    <published>2019-03-19T06:23:19.000Z</published>
+    <updated>2019-12-03T14:28:28.382Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;词云是一种数据呈现方式，本文用&lt;strong&gt;Python&lt;/strong&gt;的&lt;code&gt;wordcloud&lt;/code&gt;包实现。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Python" scheme="https://crhuang321.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>逻辑回归识别猫</title>
+    <link href="https://crhuang321.github.io/2019/03/06/Logistic-Regression%E8%AF%86%E5%88%AB%E7%8C%AB/"/>
+    <id>https://crhuang321.github.io/2019/03/06/Logistic-Regression%E8%AF%86%E5%88%AB%E7%8C%AB/</id>
+    <published>2019-03-06T13:45:14.000Z</published>
+    <updated>2019-12-03T14:27:16.581Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;逻辑回归是一个应用于监督学习、用于解决二分类（0 or 1）问题的机器学习算法，用于估计某种事物的可能性，其目的是最小化预测值与真实值的误差。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://crhuang321.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TensorFlow-4 分类学习</title>
+    <link href="https://crhuang321.github.io/2019/03/03/TensorFlow-4/"/>
+    <id>https://crhuang321.github.io/2019/03/03/TensorFlow-4/</id>
+    <published>2019-03-03T09:16:28.000Z</published>
+    <updated>2019-12-03T14:25:54.998Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用TensorFlow实现手写数字分类。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="TensorFlow" scheme="https://crhuang321.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TensorFlow-3 神经网络可视化</title>
+    <link href="https://crhuang321.github.io/2019/03/01/TensorFlow-3/"/>
+    <id>https://crhuang321.github.io/2019/03/01/TensorFlow-3/</id>
+    <published>2019-03-01T09:57:38.000Z</published>
+    <updated>2019-12-03T14:24:35.831Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Tensorboard 神经网络结构可视化。Google Chrome 与 Tensorboard 兼容。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="TensorFlow" scheme="https://crhuang321.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TensorFlow-2 搭建第一个神经网络</title>
+    <link href="https://crhuang321.github.io/2019/03/01/TensorFlow-2/"/>
+    <id>https://crhuang321.github.io/2019/03/01/TensorFlow-2/</id>
+    <published>2019-03-01T02:28:11.000Z</published>
+    <updated>2019-12-03T14:15:35.378Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用TensorFlow搭建第一个神经网络。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="TensorFlow" scheme="https://crhuang321.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TensorFlow-1 基础架构</title>
+    <link href="https://crhuang321.github.io/2019/02/28/TensorFlow-1/"/>
+    <id>https://crhuang321.github.io/2019/02/28/TensorFlow-1/</id>
+    <published>2019-02-28T08:13:47.000Z</published>
+    <updated>2019-12-03T13:23:57.154Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.tensorflow.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TensorFlow&lt;/a&gt;是Google开发的一款神经网络的Python外部的结构包，也是一个采用数据流图来进行数值计算的开源软件库。TensorFlow让我们可以先绘制计算结构图，也可以称是一系列可人机交互的计算操作，然后把编辑好的Python文件转换成更高效的C++文件，并在后端进行计算。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="TensorFlow" scheme="https://crhuang321.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>感知机解决二分类问题</title>
+    <link href="https://crhuang321.github.io/2019/02/20/%E6%84%9F%E7%9F%A5%E6%9C%BA%E8%A7%A3%E5%86%B3%E4%BA%8C%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/"/>
+    <id>https://crhuang321.github.io/2019/02/20/%E6%84%9F%E7%9F%A5%E6%9C%BA%E8%A7%A3%E5%86%B3%E4%BA%8C%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/</id>
+    <published>2019-02-20T06:24:12.000Z</published>
+    <updated>2019-12-03T13:22:59.141Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;机器学习之感知机。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://crhuang321.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最小二乘法拟合曲线</title>
+    <link href="https://crhuang321.github.io/2019/02/01/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%8B%9F%E5%90%88%E6%9B%B2%E7%BA%BF/"/>
+    <id>https://crhuang321.github.io/2019/02/01/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%8B%9F%E5%90%88%E6%9B%B2%E7%BA%BF/</id>
+    <published>2019-02-01T05:32:12.000Z</published>
+    <updated>2019-12-03T13:20:18.658Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;机器学习相关：最小二乘法拟合曲线。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://crhuang321.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>探索.ipynb</title>
+    <link href="https://crhuang321.github.io/2019/01/21/%E6%8E%A2%E7%B4%A2-ipynb/"/>
+    <id>https://crhuang321.github.io/2019/01/21/%E6%8E%A2%E7%B4%A2-ipynb/</id>
+    <published>2019-01-21T05:41:38.000Z</published>
+    <updated>2019-12-03T13:18:44.941Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;.ipynb&lt;/code&gt;全称叫&lt;code&gt;ipython notebook&lt;/code&gt;，在浏览器下打开，可以在线编辑、在线运行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Python" scheme="https://crhuang321.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kNN及手写数字识别</title>
+    <link href="https://crhuang321.github.io/2019/01/18/kNN%E5%8F%8A%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/"/>
+    <id>https://crhuang321.github.io/2019/01/18/kNN%E5%8F%8A%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</id>
+    <published>2019-01-18T14:45:47.000Z</published>
+    <updated>2019-12-03T13:17:25.489Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;kNN（k-近邻， k-Nearest Neighbor）算法是一种基本的分类与回归方法，是一个简单的无显示学习过程、非泛化学习的监督学习模型。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://crhuang321.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+</feed>
