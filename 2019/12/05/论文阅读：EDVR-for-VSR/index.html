@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：EDVR for VSR | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="EDVR: Video Restoration with Enhanced Deformable Convolutional Networks">
+<meta name="keywords" content="超分辨率,论文阅读笔记,视频超分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：EDVR for VSR">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="EDVR: Video Restoration with Enhanced Deformable Convolutional Networks">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-05T12:29:10.611Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/" title="岭秋风" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a class="nav-icon" href="https://github.com/crhuang321" title="GitHub" target="_blank">&#61595;</a>
+          <a class="nav-icon" href="mailto: crhuang@foxmail.com" title="Mail" target="_blank">&#xf003;</a>
+          <!-- <a id="nav-rss-link" class="nav-icon" href="/" title="RSS Feed"></a> -->
+        
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读：EDVR-for-VSR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR/" class="article-date">
+  <time datetime="2019-12-05T12:28:34.000Z" itemprop="datePublished">2019-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：EDVR for VSR
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>EDVR: Video Restoration with Enhanced Deformable Convolutional Networks</p>
+<a id="more"></a>
+
+<h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1 问题背景"></a>1 问题背景</h2><p>NTIRE19挑战赛中发布了⼀个具有挑战性的基准：REDS（REalistic and Diverse Scenes dataset），包含更⼤更复杂的运动，使其更加逼真和具有挑战性。</p>
+<p>REDS从两⽅⾯对现有的⽅法提出了挑战：</p>
+<ul>
+<li>如何在有⼤幅度运动的情况下对⻬多个帧。</li>
+<li>如何有效的融合带有不同动作和模糊的不同帧。</li>
+</ul>
+<h2 id="2-文章摘要"><a href="#2-文章摘要" class="headerlink" title="2 文章摘要"></a>2 文章摘要</h2><p>为应对REDS带来的两个挑战，本⽂提出了⼀个新的视频恢复框架EDVR。EDVR框架是适⽤于多种视频重建任务（如超分、去模糊）的统⼀框架。</p>
+<p>作者创新性的提出了PCD对⻬模块和TSA融合模块，使得视频重建的效果⼤⼤提⾼。</p>
+<p>⾸先，EDVR设计了⼀个⾦字塔、级联和可变形的对⻬模块PCD处理⼤运动，其中，帧对⻬是在特征层以粗到细的⽅式使⽤可变形卷积来完成的。</p>
+<p>其次，EDVR提出了⼀个时空注意融合模块，在该模块中，注意在时间和空间上都被应⽤，以强调后续恢复的重要特征。</p>
+<p>EDVR可以扩展到各种视频恢复任务，包括超分辨率和去模糊。其核⼼是</p>
+<ul>
+<li>称为⾦字塔、级联和可变形卷积（PCD）的对准模块</li>
+<li>称为时间和空间注意（TSA）的融合模块。</li>
+</ul>
+<h2 id="3-现有方法"><a href="#3-现有方法" class="headerlink" title="3 现有方法"></a>3 现有方法</h2><p>早期研究将视频重建看做是图像重建的简单拓展，相邻帧之间的时间冗余信息未被充分利⽤。最近的研究通过更精细的管道流程解决了上述问题：特征提取，对准，融合和重建。</p>
+<p>当视频包含遮挡，⼤运动和严重模糊时，该任务的挑战在于对⻬和融合模块的设计。为了获得⾼质量的输出，必须在多个帧之间对⻬并建⽴准确的对应关系，以及有效地融合对准的特征以进⾏重建。</p>
+<p>现有的⽅法多数采⽤在参考帧和相邻帧间的光流场来对⻬；另⼀个研究分⽀是采⽤动态滤波和形变卷积。⽽REDS在时间消耗和精准性上对基于光流的⽅法提出了挑战。</p>
+<p>⼤多数现存的⽅法使⽤卷积在处理的早期进⾏融合或者采⽤RNN逐渐融合多个帧，这些都没有考虑每个帧的潜在视觉信息。不同的帧和位置对重建的信息和增益不是相同的，因为⼀些帧或区域受到不完美对⻬和模糊的影响。</p>
+<h2 id="4-网络结构"><a href="#4-网络结构" class="headerlink" title="4 网络结构"></a>4 网络结构</h2><p>EDVR框架通过⾦字塔级联变形对⻬模块PCD处理⼤的运动，其中使⽤形变卷积以由粗到细的⽅式在特征级别进⾏帧对⻬。</p>
+<p>EDVR框架通过时空注意⼒融合模块TSA，使得时间和空间的注意⼒都被应⽤，以强调后续重建的重要特征。</p>
+<h2 id="5-形变卷积DCN"><a href="#5-形变卷积DCN" class="headerlink" title="5 形变卷积DCN"></a>5 形变卷积DCN</h2><p>Deformable convolutional networks：其中学习额外的偏移以允许⽹络从其常规局部邻域获得信息，从⽽提⾼常规卷积的能⼒。</p>
+<p>可变形卷积⼴泛⽤于各种任务，如视频⽬标检测(Object detection in video with spatiotemporal sampling networks.)，动作识别(Trajectory convolution for action recognition)，语义分割[Deformable convolutional networks]和视频超分辨率。</p>
+<p>特别地，TDAN使⽤可变形卷积来在特征级别对⻬输⼊帧⽽⽆需显式运动估计或图像变形。受TDAN的启发，PCD模块采⽤可变形卷积作为对⻬的基本操作。</p>
+<h2 id="6-Attention机制"><a href="#6-Attention机制" class="headerlink" title="6 Attention机制"></a>6 Attention机制</h2><p>在论⽂ Robust video super-resolution with learned temporal dynamics 中，学习了⼀系列权重图为不同时间分⽀的特征赋权。</p>
+<p>⾮局部运算（Non-local neural networks）计算位置处的响应，以获取远程范围依赖的所有位置处的特征的加权和。</p>
+<p>由这些成功的⼯作启发，作者将时空注意⼒机制引⼊到TSA融合模块。</p>
+<h2 id="7-总结思考"><a href="#7-总结思考" class="headerlink" title="7 总结思考"></a>7 总结思考</h2><p>本⽂提出了⼀个新的视频恢复框架EDVR，是⼀个适⽤于多种视频重建任务（如超分、去模糊）的统⼀框架。</p>
+<p>在解决两⼤问题：图像对⻬（Alignment）和时空信息融合（Fusion）上，分别提出PCD对⻬模块和TSA融合模块。</p>
+<p>PCD对⻬模块的巨⼤创新点是将可变形卷积以⾦字塔、级联的结构运⽤，TSA融合模块的巨⼤创新点是在融合过程中使⽤了时间和空间的注意⼒机制。</p>
+<p>其中时间注意考虑参考帧与相邻帧间相关性，空间注意考虑单帧内部每个位置的特征。根据加权，通过相关系数卷积来进⾏融合。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- 
+        <a data-url="https://crhuang321.github.io/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR/" data-id="ck3sp9yd70040c1lfbdxwcxsy" class="article-share-link">分享到</a>
+       -->
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AMeta-SR-for-VSR/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          论文阅读：Meta-SR for VSR
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATecoGAN-for-VSR/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：TecoGAN for VSR</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Video-Captioning/" rel="tag">Video Captioning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86/" rel="tag">图像超分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AKMSR-for-VSR/">论文阅读：KMSR for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AMeta-SR-for-VSR/">论文阅读：Meta-SR for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR/">论文阅读：EDVR for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATecoGAN-for-VSR/">论文阅读：TecoGAN for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AFSTRN-for-VSR/">论文阅读：FSTRN for VSR</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      <br/>
+      Modifications Based on <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":360},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

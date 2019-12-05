@@ -1,6 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>论文阅读：KMSR for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AKMSR-for-VSR/</url>
+    <content><![CDATA[<p>Kernel Modeling Super-Resolution on Real Low-Resolution Images</p>
+<a id="more"></a>
+
+<h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>为提升深度超分卷积神经网络对真实图像的泛化性和鲁棒性，本文提出一种“面向模糊核建模”的核模型超分网络KMSR。</p>
+<p>KMSR包含两个阶段：</p>
+<ul>
+<li>首先，使用生成对抗网络（GAN）建立一个真实的模糊内核池；</li>
+<li>然后，根据生成核构建的LR图像 和 HR图像，训练一个超分网络。</li>
+</ul>
+<p>本文目的：生成大量具有real camera-blur的LR images，再训练SR模型。</p>
+<h2 id="2-问题背景"><a href="#2-问题背景" class="headerlink" title="2 问题背景"></a>2 问题背景</h2><p>现有超分方法对数据集的需求：大量的 LR-HR 图像对。</p>
+<p>大量的 LR-HR 图像对很不容易获取，一般采用bicubic interpolation的方法人工生成。</p>
+<p>相机拍摄图片的高频细节损失来源于：optical blur、atmospheric blur、camera shake、lens aberrations</p>
+<p>现有超分方法对真实图像效果不理想：训练数据是HR图像的bicubic interpolation，应用的卷积核（bicubic convolution kernel）明显不同于现实世界中的镜头模糊（real camera-blur）。</p>
+<h2 id="3-总结思考"><a href="#3-总结思考" class="headerlink" title="3 总结思考"></a>3 总结思考</h2><p>通过对真实LR图像的模糊核建模，提高了基于CNN的SR网络的性能。</p>
+<p>不同于现有的在成像模型中使用bicubic-kernel获取LR训练图像的方法，本文通过使用一组从真实照片中估计出的真实的模糊核来生成SR训练数据集。</p>
+<p>本文通过训练一个GAN来输出更多的实际内核，从而进一步扩展了模糊内核池。</p>
+<p>本文的KMSR能够生成视觉上可信的HR图像，通过定量指标、定性比较和心理视觉实验证明其优越性。</p>
+<p>现有SR训练方案有待改进，以实现与现实世界的更进一步的拟合。</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读：Meta-SR for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AMeta-SR-for-VSR/</url>
+    <content><![CDATA[<p>Meta-SR: A Magnification-Arbitrary Network for Super-Resolution</p>
+<a id="more"></a>
+
+<h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>Single Image Super-Resolution</p>
+<p>提出Meta-SR在单⼀模型中完成任意尺度（包括⾮整数）的超分任务</p>
+<p>Meta-SR中的Meta-Upscale Module可替换传统放⼤模块</p>
+<p>Meta-Upscale Module利⽤输⼊的scale factor动态预测upscale filters的权重，并以此⽣成HR image with arbitrary size</p>
+<p>⽹络结构简单，速度快，⽅便⾼效</p>
+<h2 id="2-问题背景"><a href="#2-问题背景" class="headerlink" title="2 问题背景"></a>2 问题背景</h2><p>Super-Resolution of arbitrary scale factor 被⻓久忽视<br>现有的⼤部分⽅法：</p>
+<ul>
+<li>将每个scale factor单独建模训练，对新的scale factor需要重新建模</li>
+<li>仅仅实现整数的scale factor，⽆法实现x1.5、x2.5……</li>
+</ul>
+<h2 id="3-原理方法"><a href="#3-原理方法" class="headerlink" title="3 原理方法"></a>3 原理方法</h2><p>Meta-Learning</p>
+<ul>
+<li>The meta-learning，让机器学会学习，⽽不仅仅是学习⼀个函数</li>
+<li>The meta-learning主要应⽤于:<ul>
+<li>few-shot/zero-shot learning</li>
+<li>transfer learning</li>
+</ul>
+</li>
+<li>The weight prediction is one of meta-learning strategy in the neural network</li>
+<li>neural network的权重被另⼀个NN预测，⽽⾮直接从training dataset中学习</li>
+</ul>
+<p>本⽂思路：利⽤meta-learning预测与每个scale factor相对应filters的weights</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读：EDVR for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR/</url>
+    <content><![CDATA[<p>EDVR: Video Restoration with Enhanced Deformable Convolutional Networks</p>
+<a id="more"></a>
+
+<h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1 问题背景"></a>1 问题背景</h2><p>NTIRE19挑战赛中发布了⼀个具有挑战性的基准：REDS（REalistic and Diverse Scenes dataset），包含更⼤更复杂的运动，使其更加逼真和具有挑战性。</p>
+<p>REDS从两⽅⾯对现有的⽅法提出了挑战：</p>
+<ul>
+<li>如何在有⼤幅度运动的情况下对⻬多个帧。</li>
+<li>如何有效的融合带有不同动作和模糊的不同帧。</li>
+</ul>
+<h2 id="2-文章摘要"><a href="#2-文章摘要" class="headerlink" title="2 文章摘要"></a>2 文章摘要</h2><p>为应对REDS带来的两个挑战，本⽂提出了⼀个新的视频恢复框架EDVR。EDVR框架是适⽤于多种视频重建任务（如超分、去模糊）的统⼀框架。</p>
+<p>作者创新性的提出了PCD对⻬模块和TSA融合模块，使得视频重建的效果⼤⼤提⾼。</p>
+<p>⾸先，EDVR设计了⼀个⾦字塔、级联和可变形的对⻬模块PCD处理⼤运动，其中，帧对⻬是在特征层以粗到细的⽅式使⽤可变形卷积来完成的。</p>
+<p>其次，EDVR提出了⼀个时空注意融合模块，在该模块中，注意在时间和空间上都被应⽤，以强调后续恢复的重要特征。</p>
+<p>EDVR可以扩展到各种视频恢复任务，包括超分辨率和去模糊。其核⼼是</p>
+<ul>
+<li>称为⾦字塔、级联和可变形卷积（PCD）的对准模块</li>
+<li>称为时间和空间注意（TSA）的融合模块。</li>
+</ul>
+<h2 id="3-现有方法"><a href="#3-现有方法" class="headerlink" title="3 现有方法"></a>3 现有方法</h2><p>早期研究将视频重建看做是图像重建的简单拓展，相邻帧之间的时间冗余信息未被充分利⽤。最近的研究通过更精细的管道流程解决了上述问题：特征提取，对准，融合和重建。</p>
+<p>当视频包含遮挡，⼤运动和严重模糊时，该任务的挑战在于对⻬和融合模块的设计。为了获得⾼质量的输出，必须在多个帧之间对⻬并建⽴准确的对应关系，以及有效地融合对准的特征以进⾏重建。</p>
+<p>现有的⽅法多数采⽤在参考帧和相邻帧间的光流场来对⻬；另⼀个研究分⽀是采⽤动态滤波和形变卷积。⽽REDS在时间消耗和精准性上对基于光流的⽅法提出了挑战。</p>
+<p>⼤多数现存的⽅法使⽤卷积在处理的早期进⾏融合或者采⽤RNN逐渐融合多个帧，这些都没有考虑每个帧的潜在视觉信息。不同的帧和位置对重建的信息和增益不是相同的，因为⼀些帧或区域受到不完美对⻬和模糊的影响。</p>
+<h2 id="4-网络结构"><a href="#4-网络结构" class="headerlink" title="4 网络结构"></a>4 网络结构</h2><p>EDVR框架通过⾦字塔级联变形对⻬模块PCD处理⼤的运动，其中使⽤形变卷积以由粗到细的⽅式在特征级别进⾏帧对⻬。</p>
+<p>EDVR框架通过时空注意⼒融合模块TSA，使得时间和空间的注意⼒都被应⽤，以强调后续重建的重要特征。</p>
+<h2 id="5-形变卷积DCN"><a href="#5-形变卷积DCN" class="headerlink" title="5 形变卷积DCN"></a>5 形变卷积DCN</h2><p>Deformable convolutional networks：其中学习额外的偏移以允许⽹络从其常规局部邻域获得信息，从⽽提⾼常规卷积的能⼒。</p>
+<p>可变形卷积⼴泛⽤于各种任务，如视频⽬标检测(Object detection in video with spatiotemporal sampling networks.)，动作识别(Trajectory convolution for action recognition)，语义分割[Deformable convolutional networks]和视频超分辨率。</p>
+<p>特别地，TDAN使⽤可变形卷积来在特征级别对⻬输⼊帧⽽⽆需显式运动估计或图像变形。受TDAN的启发，PCD模块采⽤可变形卷积作为对⻬的基本操作。</p>
+<h2 id="6-Attention机制"><a href="#6-Attention机制" class="headerlink" title="6 Attention机制"></a>6 Attention机制</h2><p>在论⽂ Robust video super-resolution with learned temporal dynamics 中，学习了⼀系列权重图为不同时间分⽀的特征赋权。</p>
+<p>⾮局部运算（Non-local neural networks）计算位置处的响应，以获取远程范围依赖的所有位置处的特征的加权和。</p>
+<p>由这些成功的⼯作启发，作者将时空注意⼒机制引⼊到TSA融合模块。</p>
+<h2 id="7-总结思考"><a href="#7-总结思考" class="headerlink" title="7 总结思考"></a>7 总结思考</h2><p>本⽂提出了⼀个新的视频恢复框架EDVR，是⼀个适⽤于多种视频重建任务（如超分、去模糊）的统⼀框架。</p>
+<p>在解决两⼤问题：图像对⻬（Alignment）和时空信息融合（Fusion）上，分别提出PCD对⻬模块和TSA融合模块。</p>
+<p>PCD对⻬模块的巨⼤创新点是将可变形卷积以⾦字塔、级联的结构运⽤，TSA融合模块的巨⼤创新点是在融合过程中使⽤了时间和空间的注意⼒机制。</p>
+<p>其中时间注意考虑参考帧与相邻帧间相关性，空间注意考虑单帧内部每个位置的特征。根据加权，通过相关系数卷积来进⾏融合。</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读：TecoGAN for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATecoGAN-for-VSR/</url>
+    <content><![CDATA[<p>Temporally Coherent GANs for Video Super-Resolution (TecoGAN)</p>
+<a id="more"></a>
+
+<h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>本⽂提出了⼀种针对VSR的对抗性训练，可以在不牺牲空间细节的情况下，获得节奏连贯的解决⽅案。</p>
+<p>本⽂的⼯作集中在新的损失公式的视频超分辨率，并证明了其⼒量的基础上建⽴的⽣成器框架。</p>
+<p>即时对抗性学习是获得照⽚真实感和时间连贯性细节的关键。</p>
+<p>本⽂还提出了⼀种新的损耗，可以有效去除递归⽹络中的时间伪影⽽不降低感知质量。</p>
+<p>本⽂提出了第⼀组度量来评估时间进化的准确性和感知质量。</p>
+<h2 id="2-问题背景"><a href="#2-问题背景" class="headerlink" title="2 问题背景"></a>2 问题背景</h2><p>对抗性训练在SISR⽅⾯⾮常成功，因为它能产⽣逼真和⾮常详细的结果。尽管如此，⽬前最先进的VSR⽅法仍然倾向于更简单的规范，如，⽽不是对抗性损失函数。</p>
+<p>直接向量范数作为损失函数的平均性质容易导致在⽣成的图像中由于缺乏空间细节⽽导致的时间平滑性和⼀致性。</p>
+<p>对于SISR，基于深度学习的⽅法实现了最先进的峰值信噪⽐（PSNR），⽽基于⽣成性对抗⽹络（GANs）的体系结构在感知质量⽅⾯实现了重⼤改进。</p>
+<p>与SISR相⽐，VSR的主要挑战是获得⽆闪烁伪影形式的⾮⾃然变化的清晰结果。</p>
+<h2 id="3-网络结构"><a href="#3-网络结构" class="headerlink" title="3 网络结构"></a>3 网络结构</h2><p>本⽂提出的VSR⽹络结构TecoGAN由三个部分组成：循环⽣成器、流估计⽹络和时空鉴别器。</p>
+<p>⽣成器⽤于从LR输⼊重复⽣成HR视频帧。流估计⽹络学习帧间的运动补偿以帮助⽣成器和时空鉴别器。</p>
+<p>在训练期间， 和⼀起训练以愚弄时空鉴别器。这个鉴别器是TecoGAN⽅法的核⼼，因为它可以考虑到空间和时间⽅⾯，并且在不过度平滑图像内容的情况下惩罚结果中的时间不连续性。如此⼀来， 需要⽣成与先前帧⼀致的⾼频细节。</p>
+<p>训练结束后， 的附加复杂性将不再起作⽤，因为只有训练的和模型才需要推断出新的超分辨率视频输出。</p>
+<h2 id="4-总结思考"><a href="#4-总结思考" class="headerlink" title="4 总结思考"></a>4 总结思考</h2><p>本⽂提出了⼀种新的对抗性的VSR⽅法TecoGAN，允许在时间⼀致性⽅⾯进⾏⾃我监控，由于TecoGAN的鉴别器结构和PP损失，本⽂的⽅法能够产⽣具有鲜明特征和精细细节的真实结果。</p>
+<p>虽然本⽂的⽅法可以为⼤量的⾃然图像⽣成⾮常逼真的结果，但是在某些情况下会⽣成时间⼀致但次优的细节，例如⽋分辨的⾯和⽂本。这是GANs的⼀个典型问题，通常通过引⼊视频内容的先验信息来解决。</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读：FSTRN for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AFSTRN-for-VSR/</url>
+    <content><![CDATA[<p>Fast Spatio-Temporal Residual Network for Video Super-Resolution</p>
+<a id="more"></a>
+
+<h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1 问题背景"></a>1 问题背景</h2><p>⽬前很多基于深度学习的超分辨率⽅法，忽略了视频的时间相关性，使得超分后的视频画⾯闪烁。</p>
+<p>普遍的VSR⽅法采⽤⼀帧⼀帧逐步SISR的⽅法，这忽略了视频的帧间信息，使得SR后的视频缺少连续性。</p>
+<p>为提取帧间信息，现有的很多⽅法直接采⽤3D卷积来同步提取时空信息，这将会引⼊⼤量参数，造成了过⼤的计算量，限制了模型深度，进⽽影响了模型的SR性能。</p>
+<p>此外现有的⽅法采⽤时域融合技术来提取时间信息，⽐如运动补偿，这也造成巨⼤的计算量。</p>
+<p>现有的很多⽅法在SR过程中，⼤量使⽤残差连接，却没有起到很好的效果。</p>
+<h2 id="2-文章摘要"><a href="#2-文章摘要" class="headerlink" title="2 文章摘要"></a>2 文章摘要</h2><p>本⽂针对视频超分辨率⽅法，提出了⼀种⾼效的基于3D卷积的时空学习模型FSTRN。</p>
+<p>FSTRN⽅法基于矩阵分解的思想，通过使⽤时空分步卷积的⽅法降低计算消耗。</p>
+<p>FSTRN⽅法结合多层次的残差学习构建了深度残差⽹络，实现了更优的视频超分辨率效果。</p>
+<p>同时，⽂章在理论上证明了⽅法的泛化边界，为准确复原图像提供了理论⽀撑。</p>
+<h2 id="3-网络结构"><a href="#3-网络结构" class="headerlink" title="3 网络结构"></a>3 网络结构</h2><p>FSTRN由四部分组成：</p>
+<ul>
+<li>LFENet：低分辨率图像的特征提取⽹络（LR video shallow feature extraction net）</li>
+<li>FRBs：快速时空残差模块（fast spatio-temporal residual blocks）</li>
+<li>LSRNet：低分辨率特征融合和上采样超分辨率⽹络（LR feature fusion and up-sampling SR net）</li>
+<li>GRL：全局残差学习模块（global residual learning part），包含：<ul>
+<li>LRL：低分辨率空间残差学习模块（LR space residual learning）</li>
+<li>CRL：交叉空间残差学习模块（cross-space residual learning）</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-总结思考"><a href="#4-总结思考" class="headerlink" title="4 总结思考"></a>4 总结思考</h2><p>本⽂提出的快速时空残差⽹络FSTRN在解决VSR时，利⽤新设计的快速时空残差块FRBs，在保证较⾼计算效率的同时，能够同时提取时空特征，取得了不错的SR效果。</p>
+<p>除了利⽤LR空间上的残差来提⾼特征提取性能外，本⽂还进⼀步提出了⼀种跨空间残差学习⽅法来利⽤低分辨率LR输⼊和⾼分辨率HR输出之间的相似性。</p>
+<p>本⽂着⼿于SR后视频闪烁的不连续性问题、C3D卷积参数过多造成的计算量过⼤问题、残差学习的效率低下问题，提出新的改进⽅法和⽹络模型，这是本⽂的最⼤创新点。</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读：3DSRnet for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9A3DSRnet-for-VSR/</url>
+    <content><![CDATA[<p>3DSRnet: Video Super-resolution using 3D Convolutional Neural Networks</p>
+<a id="more"></a>
+
+<h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>本⽂提出了⼀种有效的3D-CNN视频超分辨率⽹络，称为3DSRnet，它不需要运动对⻬作为预处理。</p>
+<p>3DSRnet保持了时空特征映射的时间深度，最⼤限度地捕捉低分辨率和⾼分辨率帧之间的时间⾮线性特征，并结合亚像素输出采⽤残差学习获得最好的SR性能。</p>
+<p>3DSRnet会⾸先处理由于场景切换带来的性能退化问题，这在实际应⽤中具有重要意义。</p>
+<p>3DSRnet通过残差学习得到⼀个端到端的⾮线性时空映射，并采⽤多通道输出结构降低了计算上的复杂性。</p>
+<p>3DSRnet是第⼀种能够有效处理输⼊帧中场景变化的VSR⽅法。</p>
+<h2 id="2-问题背景"><a href="#2-问题背景" class="headerlink" title="2 问题背景"></a>2 问题背景</h2><p>本⽂提出了⼀种有效的3D-CNN视频超分辨率⽹络，称为3DSRnet，它不需要运动对⻬作为预处理。</p>
+<p>3DSRnet保持了时空特征映射的时间深度，最⼤限度地捕捉低分辨率和⾼分辨率帧之间的时间⾮线性特征，并结合亚像素输出采⽤残差学习获得最好的SR性能。</p>
+<p>3DSRnet会⾸先处理由于场景切换带来的性能退化问题，这在实际应⽤中具有重要意义。</p>
+<p>3DSRnet通过残差学习得到⼀个端到端的⾮线性时空映射，并采⽤多通道输出结构降低了计算上的复杂性</p>
+<p>3DSRnet是第⼀种能够有效处理输⼊帧中场景变化的VSR⽅法。</p>
+<h2 id="3-网络结构"><a href="#3-网络结构" class="headerlink" title="3 网络结构"></a>3 网络结构</h2><p>3DSRnet由以下两个⼦⽹组成：</p>
+<ul>
+<li>Video SR subnet<br>视频超分⼦⽹SR在⼀个滑动时间窗⼝中获取⼀系列连续的LR输⼊帧，并⽣成⼀个对应于滑动时间窗⼝中间帧的HR输出帧。</li>
+<li>Scene change detection and frame replacement (SF) subnet<br>场景切换检测与帧替换⼦⽹SF负责检测滑动时间窗⼝中的场景变化，并⽤与中间帧属于同⼀场景的时间最近帧替换不同场景的帧。</li>
+</ul>
+<h2 id="4-总结思考"><a href="#4-总结思考" class="headerlink" title="4 总结思考"></a>4 总结思考</h2><p>3DSRnet能有效地捕获LR输⼊帧的时空信息，在整个深三维卷积层中重建HR帧。</p>
+<p>由于采⽤了外推/填充策略，时间深度始终保持不变，且⽆需预先的运动对⻬。</p>
+<p>该⽹络采⽤亚像素输出结构的残差学习，采⽤简单的分类⽹络，避免了由于多个输⼊帧的场景变化⽽导致的性能下降。</p>
+<p>外推/填充策略在3D-CNN上的应⽤、多通道输出结果、场景切换的检测与帧替换机制是本⽂提出的3DSRnet的最⼤创新点。</p>
+<p>可改进之处：借鉴FSTRN的分步3D卷积策略，在空间上和时间上分步做3D卷积运算，或许可以取得更好的时间性能。</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读：RBPN for VSR</title>
+    <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ARBPN-for-VSR/</url>
+    <content><![CDATA[<p>Recurrent Back-Projection Network for Video Super-Resolution</p>
+<a id="more"></a>
+
+<h2 id="1-背景问题"><a href="#1-背景问题" class="headerlink" title="1 背景问题"></a>1 背景问题</h2><p>超分辨率（SR）的⽬标是通过在低分辨率（LR）图像中填充丢失的细节，将低分辨率（LR）图像增强到⾼分辨率（HR）。超分辨率分为单图像SR（SISR）、多图像SR（MISR）和视频SR（VSR），本⽂关注重点即为视频SR。</p>
+<p>流⾏的MISR或VSR⽅法⼀般基于准确的运动估计和运动补偿（alignment），这个模式受到运动估计准确度的约束。</p>
+<p>在⼤多数基于CNN的⽅法中（包括DBPN），实际上都对图像做了concat以及1*1卷积的操作，或者直接把图⽚输⼊到RNN中。concat的⽅法导致多张图⽚被同步地处理，增加了训练⽹络的难度。RNN中同时处理细微和明显的变化（⽐如同⼀图⽚中运动剧烈和缓慢的物体）是⽐较困难的。</p>
+<h2 id="2-方案概述"><a href="#2-方案概述" class="headerlink" title="2 方案概述"></a>2 方案概述</h2><p>循环编码器/解码器模块整合来⾃连续视频帧的空间和时间上下⽂，该模块将多帧信息与⽬标帧的单帧超分辨率路径融合在⼀起。</p>
+<p>RBPN将每个上下⽂帧视为单独的信息源，这些源组合在⼀个迭代细化框架中，该框架受多图像超分辨率中的反投影概念的启发。通过显式表示相对于⽬标的估计帧间运动，⽽不是显式对⻬帧，将有助于此操作。</p>
+<p>RBPN是根据当前帧以及多个邻居帧⽣成当前帧的SR图像（multi frame-&gt;single frame），并不是multi frame -&gt; multi frame。</p>
+<p>RBPN与DBPN思想⽐较相似，核⼼都是残差学习。DBPN是根据浅层的特征来学习残差，RBPN是根据邻居帧以及两者的optical flow来学习残差。</p>
+<h2 id="3-关键创新"><a href="#3-关键创新" class="headerlink" title="3 关键创新"></a>3 关键创新</h2><p>将SISR和MISR集成到⼀个统⼀的VSR框架中：SISR和MISR从不同的源中提取缺失的细节。这些不同的源通过RNN对VSR按时间顺序进⾏迭代更新。</p>
+<p>RBPN的反投影模块：我们开发了⼀种通过反投影将SISR和MISR路径中提取的解合并在⼀起的循环编码器/解码器机制。</p>
+<p>扩展评价协议：除了以前缺少运动信息的标准数据集Vid4和SPMCS，⼀个包含各种运动类型的数据集Vimeo-90k被⽤在实验评估中，这允许根据输⼊视频的类型对VSR⽅法的⻓处和弱点进⾏更详细的评估。</p>
+<h2 id="4-总结思考"><a href="#4-总结思考" class="headerlink" title="4 总结思考"></a>4 总结思考</h2><p>先前MISR和VSR⽅法⼀般基于准确的运动估计和运动补偿，这个模式受到运动估计准确度的约束，RBPN改进了这⼀模式。</p>
+<p>没有直接concat多张图⽚同步处理，这减缓了训练⽹络的难度。</p>
+<p>避免了RNN中同时处理细微和明显的变化（如同⼀图⽚中运动剧烈和缓慢的物体）的困难。</p>
+<p>DBPN中不停向后传递的residual，能较好地应对RNN中对subtle和significant changes乏⼒的问题。</p>
+<p>应⽤循环Encoder-Decoder机制，通过反投影合并在SISR和MISR路径中提取的细节，扩⼤了RNN中的时间，使时间跨度更⼤的帧也能被很好地利⽤。</p>
+<p>RBPN的核⼼是残差学习，根据邻居帧以及两者的optical flow来学习残差，这避免了由⽹络过深所引起的消失梯度问题和退化问题，使优化也更容易。</p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于深度学习的图像超分方法整理</title>
     <url>/2019/12/05/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/</url>
     <content><![CDATA[<p>本文整理了一些基于深度学习的图像超分方法：SRCNN、FSRCNN、ESPCN、VDSR、DRCN、RED、DRRN、LapSRN、DBPN……</p>
@@ -122,9 +356,9 @@
 <p>未完待续……</p>
 ]]></content>
       <tags>
-        <tag>深度学习</tag>
         <tag>超分辨率</tag>
         <tag>图像超分</tag>
+        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>

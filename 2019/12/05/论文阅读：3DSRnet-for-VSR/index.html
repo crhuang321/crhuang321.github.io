@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：3DSRnet for VSR | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="3DSRnet: Video Super-resolution using 3D Convolutional Neural Networks">
+<meta name="keywords" content="超分辨率,论文阅读笔记,视频超分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：3DSRnet for VSR">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9A3DSRnet-for-VSR&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="3DSRnet: Video Super-resolution using 3D Convolutional Neural Networks">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-05T12:26:55.362Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/" title="岭秋风" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a class="nav-icon" href="https://github.com/crhuang321" title="GitHub" target="_blank">&#61595;</a>
+          <a class="nav-icon" href="mailto: crhuang@foxmail.com" title="Mail" target="_blank">&#xf003;</a>
+          <!-- <a id="nav-rss-link" class="nav-icon" href="/" title="RSS Feed"></a> -->
+        
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读：3DSRnet-for-VSR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9A3DSRnet-for-VSR/" class="article-date">
+  <time datetime="2019-12-05T12:23:57.000Z" itemprop="datePublished">2019-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：3DSRnet for VSR
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>3DSRnet: Video Super-resolution using 3D Convolutional Neural Networks</p>
+<a id="more"></a>
+
+<h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>本⽂提出了⼀种有效的3D-CNN视频超分辨率⽹络，称为3DSRnet，它不需要运动对⻬作为预处理。</p>
+<p>3DSRnet保持了时空特征映射的时间深度，最⼤限度地捕捉低分辨率和⾼分辨率帧之间的时间⾮线性特征，并结合亚像素输出采⽤残差学习获得最好的SR性能。</p>
+<p>3DSRnet会⾸先处理由于场景切换带来的性能退化问题，这在实际应⽤中具有重要意义。</p>
+<p>3DSRnet通过残差学习得到⼀个端到端的⾮线性时空映射，并采⽤多通道输出结构降低了计算上的复杂性。</p>
+<p>3DSRnet是第⼀种能够有效处理输⼊帧中场景变化的VSR⽅法。</p>
+<h2 id="2-问题背景"><a href="#2-问题背景" class="headerlink" title="2 问题背景"></a>2 问题背景</h2><p>本⽂提出了⼀种有效的3D-CNN视频超分辨率⽹络，称为3DSRnet，它不需要运动对⻬作为预处理。</p>
+<p>3DSRnet保持了时空特征映射的时间深度，最⼤限度地捕捉低分辨率和⾼分辨率帧之间的时间⾮线性特征，并结合亚像素输出采⽤残差学习获得最好的SR性能。</p>
+<p>3DSRnet会⾸先处理由于场景切换带来的性能退化问题，这在实际应⽤中具有重要意义。</p>
+<p>3DSRnet通过残差学习得到⼀个端到端的⾮线性时空映射，并采⽤多通道输出结构降低了计算上的复杂性</p>
+<p>3DSRnet是第⼀种能够有效处理输⼊帧中场景变化的VSR⽅法。</p>
+<h2 id="3-网络结构"><a href="#3-网络结构" class="headerlink" title="3 网络结构"></a>3 网络结构</h2><p>3DSRnet由以下两个⼦⽹组成：</p>
+<ul>
+<li>Video SR subnet<br>视频超分⼦⽹SR在⼀个滑动时间窗⼝中获取⼀系列连续的LR输⼊帧，并⽣成⼀个对应于滑动时间窗⼝中间帧的HR输出帧。</li>
+<li>Scene change detection and frame replacement (SF) subnet<br>场景切换检测与帧替换⼦⽹SF负责检测滑动时间窗⼝中的场景变化，并⽤与中间帧属于同⼀场景的时间最近帧替换不同场景的帧。</li>
+</ul>
+<h2 id="4-总结思考"><a href="#4-总结思考" class="headerlink" title="4 总结思考"></a>4 总结思考</h2><p>3DSRnet能有效地捕获LR输⼊帧的时空信息，在整个深三维卷积层中重建HR帧。</p>
+<p>由于采⽤了外推/填充策略，时间深度始终保持不变，且⽆需预先的运动对⻬。</p>
+<p>该⽹络采⽤亚像素输出结构的残差学习，采⽤简单的分类⽹络，避免了由于多个输⼊帧的场景变化⽽导致的性能下降。</p>
+<p>外推/填充策略在3D-CNN上的应⽤、多通道输出结果、场景切换的检测与帧替换机制是本⽂提出的3DSRnet的最⼤创新点。</p>
+<p>可改进之处：借鉴FSTRN的分步3D卷积策略，在空间上和时间上分步做3D卷积运算，或许可以取得更好的时间性能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- 
+        <a data-url="https://crhuang321.github.io/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9A3DSRnet-for-VSR/" data-id="ck3sp9yd5003wc1lf8gm1e2sg" class="article-share-link">分享到</a>
+       -->
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AFSTRN-for-VSR/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          论文阅读：FSTRN for VSR
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ARBPN-for-VSR/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：RBPN for VSR</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Video-Captioning/" rel="tag">Video Captioning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86/" rel="tag">图像超分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AKMSR-for-VSR/">论文阅读：KMSR for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AMeta-SR-for-VSR/">论文阅读：Meta-SR for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR/">论文阅读：EDVR for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATecoGAN-for-VSR/">论文阅读：TecoGAN for VSR</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AFSTRN-for-VSR/">论文阅读：FSTRN for VSR</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      <br/>
+      Modifications Based on <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":360},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
