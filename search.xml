@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>基于深度学习的图像超分方法整理</title>
+    <url>/2019/12/05/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p>本文整理了一些基于深度学习的图像超分方法：SRCNN、FSRCNN、ESPCN、VDSR、DRCN、RED、DRRN、LapSRN、DBPN……</p>
+<a id="more"></a>
+
+<h2 id="1-SRCNN"><a href="#1-SRCNN" class="headerlink" title="1 SRCNN"></a>1 SRCNN</h2><p>Image Super-Resolution Using Deep Convolutional Networks</p>
+<p>SRCNN是⾸个使⽤CNN结构（即基于深度学习）的端到端的超分辨率算法。⾸先输⼊预处理：对输⼊的LR图像⽤bicubic算法放⼤为⽬标尺⼨。然后将放⼤后的LR图像经过卷积⽹络处理，最终得到SR图像。该过程包含以下三步：块提取及特征表示、⾮线性映射、重建。</p>
+<p>关键点：</p>
+<ul>
+<li>卷积核数量越多，即特征向量维数越高，实验效果越好，但会影响算法速度</li>
+<li>没有池化层和全连接层，导致网络对初始参数和学习率非常敏感，网络越深会使训练难以收敛</li>
+<li>以MSE（等价于PSNR）为Loss函数得到的解往往是可能解的平均，而非最优</li>
+<li>以MSE为Loss的SR算法得到的结果有些区域看起来过于模糊，缺乏应有的细节</li>
+<li>RGB通道联合训练效果最好</li>
+<li>YCbCr通道下，Cb、Cr通道对性能提升基本无帮助，只基于Y通道的训练效果更好</li>
+</ul>
+<p>SRCNN提出轻量的端到端网络SRCNN来解决超分问题，在当时取得了比传统方法性能更强、速度更快的效果。另外作者将基于稀疏编码的超分方法理解为卷积神经网络的一种形式，也是本文非常值得阅读的亮点。</p>
+<h2 id="2-FSRCNN"><a href="#2-FSRCNN" class="headerlink" title="2 FSRCNN"></a>2 FSRCNN</h2><p>Accelerating the Super-Resolution Convolutional Neural Network</p>
+<p>在SRCNN中到底是什么拖慢了重建速度呢？</p>
+<ul>
+<li>将Interpolated LR投入网络，带来巨大计算开销（放大n倍时，计算复杂度上升到了n^2）</li>
+<li>非线性层映射的参数太过臃肿</li>
+</ul>
+<p>如何解决？</p>
+<ul>
+<li>取消ILR输入，采用LR输入，在最后使用反卷积放大尺寸</li>
+<li>改变特征维数，用更小的卷积核和更多的映射层</li>
+<li>共享映射层，如需训练不同上采样倍率的模型，只需fine-tuning最后的反卷积层</li>
+</ul>
+<h2 id="3-ESPCN"><a href="#3-ESPCN" class="headerlink" title="3 ESPCN"></a>3 ESPCN</h2><p>Real-Time Single Image and Video Super-Resolution Using an EfficientSub-Pixel Convolutional Neural Network</p>
+<p>解决了什么问题？</p>
+<ul>
+<li>将插值后的低分辨率图像输入到网络（类似SRCNN），即要在较高的分辨率上进行卷积，增加了计算复杂度</li>
+<li>本文提出了一种直接在低分辨率图像尺寸上提取特征，计算得到高分辨率图像的高效方法</li>
+</ul>
+<p>主要创新点？</p>
+<ul>
+<li>尺寸放大的插值函数被隐含地包含在前面的卷积层中，可自动学习到</li>
+<li>卷积运算都是在低分辨率图像尺寸大小上进行，因此效率较高</li>
+<li>在模型末端进行上采样，使得在低分辨率空间保留更多的纹理区域，在视频超分中也可以做到实时</li>
+<li>模块末端直接使用亚像素卷积的方式来进行上采样，可以学习到更好、更为复杂的方式，获得更好的重建效果</li>
+</ul>
+<h2 id="4-VDSR"><a href="#4-VDSR" class="headerlink" title="4 VDSR"></a>4 VDSR</h2><p>Accurate Image Super-Resolution Using Very Deep Convolutional Networks</p>
+<p>解决了什么问题？</p>
+<ul>
+<li>解决了网络结构较深时无法训练的问题，同时性能也得到了提升</li>
+<li>感受野小，太依赖小区域内容</li>
+<li>模型只对某个放大比例有效</li>
+</ul>
+<p>主要创新点？</p>
+<ul>
+<li>LR和HR在很大程度上是相似的，即两者的低频信息相近，训练时只需学习两者之间的高频部分残差</li>
+<li>加深了网络结构（20层），使得越深的网络层拥有更大的感受野</li>
+<li>残差图像比较稀疏，大部分值都为0或者比较小，因此收敛速度快</li>
+<li>应用自适应梯度裁剪，将梯度限制在某一范围，也能加快收敛过程</li>
+<li>实验证明补0操作能提升对边界像素的预测结果</li>
+<li>将不同倍数的图像混合在一起训练，这样训练出来的一个模型就可以解决不同倍数的超分辨率问题</li>
+</ul>
+<h2 id="5-DRCN"><a href="#5-DRCN" class="headerlink" title="5 DRCN"></a>5 DRCN</h2><p>Deeply-Recursive Convolutional Network for Image Super-Resolution</p>
+<p>解决了什么问题？</p>
+<ul>
+<li>对于图像复原问题的操作问题，深度学习处理的时候时不使用pooling层</li>
+<li>使用递归神经网络解决：网络较深时有较多参数，导致的过拟合，模型过大、难以存储和重现</li>
+<li>采用skip connection 结构解决了：梯度消失、爆炸，不易收敛</li>
+</ul>
+<p>主要创新点？</p>
+<ul>
+<li>DRCN第一次将之前已有的递归神经网络(Recursive Neural Network)结构应用在超分辨率处理中</li>
+<li>利用残差学习的思想(文中的跳跃连接)，加深了网络结构(16个递归)，增加了网络感受野，提升了性能</li>
+<li>DRCN输入的是插值后的图像。Embedding network相当于特征提取，Inference network相当于特征的非线性映射，Reconstruction network从特征图像恢复最后的重建结果</li>
+<li>Inference network是一个递归网络，即数据循环地通过该层多次，等效于使用同一组参数的多个串联的卷积层</li>
+</ul>
+<h2 id="6-RED"><a href="#6-RED" class="headerlink" title="6 RED"></a>6 RED</h2><p>Image Restoration Using Convolutional Auto-encoders with Symmetric Skip Connections</p>
+<p>解决了什么问题？</p>
+<ul>
+<li>编码-解码框架能够让反向传播信号直接传递到底层，解决了梯度消失问题</li>
+<li>编码-解码框架可以将卷积层的细节传递给反卷积层，能够恢复出更干净的图片</li>
+</ul>
+<p>主要创新点？</p>
+<ul>
+<li>提出了卷积反卷积对称网络结构，可用于多种任务：image denoising、image super-resolution、JPEG deblocking、 non-blind image deblurring、image inpainting……</li>
+<li>卷积：图像特征被提取，同时噪声被降低</li>
+<li>反卷积：针对特征的上采样，完成由图像特征到图像的转换，由于利用的是过滤后的噪声后的图像特征，因此达到了降噪、图像修复的目的</li>
+<li>实验说明利用反卷积结构而不用Padding和Upsampling的原因：反卷积对图像细节有补偿作用</li>
+</ul>
+<h2 id="7-DRRN"><a href="#7-DRRN" class="headerlink" title="7 DRRN"></a>7 DRRN</h2><p>Image Super-Resolution via Deep Recursive Residual Network</p>
+<p>DRRN的方法来用于单图Y通道上的超分，作者应该是受到了ResNet、VDSR和DRCN的启发，采用了更深的网络结构来获取性能的提升。DRRN中的每个残差单元都共同拥有一个相同的输入，即递归块中的第一个卷积层的输出。每个残差单元都包含2个卷积层。在一个递归块内，每个残差单元内对应位置相同的卷积层参数都共享。总之，DRRN就是通过对之前已有的ResNet等结构进行调整，采取更深的网络结构得到结果的提升。</p>
+<p>作者列出了ResNet、VDSR、DRCN和DRRN四者的主要策略：</p>
+<ul>
+<li>ResNet是链模式的局部残差学习。</li>
+<li>VDSR是全局残差学习。</li>
+<li>DRCN是全局残差学习+单权重的递归学习+多目标优化。</li>
+<li>DRRN是多路径模式的局部残差学习+全局残差学习+多权重的递归学习。</li>
+</ul>
+<p>创新点：</p>
+<ul>
+<li>使用VDSR的调整梯度裁剪和DRCN的递归学习来解决深度增加的网络对梯度传播带来困难</li>
+<li>递归模块中权重共享减少了模型所需要的参数，从而保证不发生梯度爆炸或者梯度消失</li>
+<li>学习残差的好处就是对网络的参数要求低，网络不需要记忆太多的图片细节，从而有利于梯度传输，防止梯度消失或者梯度爆炸</li>
+<li>全局和局部残差学习。每个递归块中都使用局部残差学习，然后总体在模型的输出层那里加上一个全局残差学习，整体模型中只有一个全局残差学习和多个局部残差学习。</li>
+</ul>
+<h2 id="8-LapSRN"><a href="#8-LapSRN" class="headerlink" title="8 LapSRN"></a>8 LapSRN</h2><p>Deep Laplacian Pyramid Networks for Fast and Accurate Super-Resolution</p>
+<p>之前的方法存在有三点问题：</p>
+<ul>
+<li>输入网络前上采样操作增加了额外的计算开销，同时也会导致可见的重建伪影。使用了亚像素卷积层或者反卷积层这样的操作来替换预先定义好的上采样操作相对比较简单，性能较差，并不能学好低分辨率图像到高分辨率图像复杂的映射</li>
+<li>使用 L2 型损失函数不可避免地会产生模糊的预测，恢复出的高分辨率图片往往会太过于平滑</li>
+<li>在重建高分辨率图像时，如果只用一次上采样的操作，在获得大倍数(8倍以上)的上采样因子时就会比较困难。而且在不同的应用时，需要训练不同上采样倍数的模型。</li>
+</ul>
+<p>关键点：</p>
+<ul>
+<li>LapSRN的结构可以看成有多级，每一级完成一次2倍的上采样操作，要实现8倍的上采样就需要有三级。</li>
+<li>在每一级中，先通过一些级联的卷积层提取特征，接着通过一个反卷积层将提取出的特征的尺寸上采样2倍。</li>
+<li>反卷积层后连有两个卷积层，一个卷积层的作用是继续提取特征，另外一个卷积层的作用是预测出这一级的残差。</li>
+<li>输入图像在每一级也经过一个反卷积层使尺寸上采样2倍，再与对应级的残差相加，就能重构出这一级的上采样结果。</li>
+<li>LapSRN通过逐步上采样，一级一级预测残差的方式，在做高倍上采样时，也能得到中间低倍上采样结果的输出。由于尺寸是逐步放大，不是所有的操作都在大尺寸特征上进行，因此速度比较快。</li>
+<li>LapSRN设计了损失函数来训练网络，对每一级的结果都进行监督，因此取得了不错的结果。</li>
+</ul>
+<h2 id="9-DBPN"><a href="#9-DBPN" class="headerlink" title="9 DBPN"></a>9 DBPN</h2><p>Deep Back-Projection Networks(DBPN)提出了⼀种不断迭代地进⾏增采样和降采样的⽹络，为每个阶段的映射错误提供错误反馈机制，构建了相互连接的上采样和下采样阶段，每个阶段代表不同类型的图像退化和HR分量。</p>
+<p>未完待续……</p>
+]]></content>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>超分辨率</tag>
+        <tag>图像超分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Video Captioning</title>
     <url>/2019/09/19/Video-Captioning/</url>
     <content><![CDATA[<p>为一张图片产生一个描述被称为image caption任务，为一个视频产生一个描述成为vedio caption，但视频可以理解为在时间上有连续性的一组图片，因此可以理解成为一组图片产生一个描述。Vedio caption是属于对vedio analysis的高层语义分析。描述一般描述两个方向，属性和相互关系。</p>
