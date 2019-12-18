@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>论文阅读：SPMC for VSR</title>
+    <url>/2019/12/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ASPMC-for-VSR/</url>
+    <content><![CDATA[<p>Detail-revealing Deep Video Super-resolution. ICCV 2017</p>
+<a id="more"></a>
+
+<h2 id="1-研究的问题"><a href="#1-研究的问题" class="headerlink" title="1 研究的问题"></a>1 研究的问题</h2><p>基于深度学习的视频超分辨率重建，有效处理运动补偿和灵活缩放的同时充分有效融合多帧关联信息。</p>
+<p>实现以下目标：</p>
+<ul>
+<li>任意大小输入，任意放缩系数。</li>
+<li>更好地利用亚像素信息。</li>
+<li>生成更真实的细节。</li>
+</ul>
+<h2 id="2-研究动机"><a href="#2-研究动机" class="headerlink" title="2 研究动机"></a>2 研究动机</h2><p>视频超分主要关注的两个问题：</p>
+<ul>
+<li>如何充分利用多帧关联信息</li>
+<li>如何有效融合图像细节到高分辨率图像中</li>
+</ul>
+<p>大多深度学习方法使用backward warping到参考帧的方法实现运动补偿，该方法并非最优。</p>
+<p>大多CNN方法在多帧融合时可以产生丰富的细节，但不能确定图像细节来源于内部帧还是外部数据。</p>
+<h2 id="3-先进性与贡献"><a href="#3-先进性与贡献" class="headerlink" title="3 先进性与贡献"></a>3 先进性与贡献</h2><p>SPMC可以<strong>同时完成超分辨和运动补偿</strong>，本文提出的SPMC可在运动补偿的同时实现任意缩放因子的超分。</p>
+<p>SPMC是无参数的，因此结合到视频超分辨网络中，使得该网络可用于任意尺寸的输入，而无需重新训练。</p>
+<p>作者基于现状提出一个sub-pixel motion compensation（SPMC）层，用来有效处理动作补偿和特征图缩放。</p>
+<p>对于多帧输入，作者用一个LSTM来处理多帧输入。</p>
+<h2 id="4-模型结构"><a href="#4-模型结构" class="headerlink" title="4 模型结构"></a>4 模型结构</h2><p>这个网络主要分成三个部分：motion estimation，motion compensation和detail fusion。</p>
+<h3 id="4-1-Motion-Estimation"><a href="#4-1-Motion-Estimation" class="headerlink" title="4.1 Motion Estimation"></a>4.1 Motion Estimation</h3><p>motion estimation已经相对比较成熟了，方法有Flownet-S和VESPCN中的motion compensation transformer（MCT）。最后作者计划使用MCT。</p>
+<h3 id="4-2-Motion-Compensation"><a href="#4-2-Motion-Compensation" class="headerlink" title="4.2 Motion Compensation"></a>4.2 Motion Compensation</h3><p>motion compensation用的就是SPMC层。</p>
+<p>作者在运动补偿（为像素点增加坐标增量）的同时加入了放缩系数 α，使得运动补偿和超分辨同时完成。</p>
+<h3 id="4-3-SPMC"><a href="#4-3-SPMC" class="headerlink" title="4.3 SPMC"></a>4.3 SPMC</h3><p>作第0帧到第i帧的变形（ warp ），要比反向变形更合理。</p>
+<ul>
+<li>之前的深度学习工作，几乎都是后者：从第i帧变形到第0帧，再用于补偿。这样做是直观上合理的。<br>但是，作者接下来指出：前者更有其合理性，是从理论上推导可得的。</li>
+<li>降采样的转置是补零升采样，形变的转置操作结果看图，会产生一些新的元素。</li>
+<li>转置操作虽然不是逆操作，但操作方向是相反的。如果我们定义正向为第0帧到第i帧，那么转置操作就是从第i帧到第0帧。</li>
+</ul>
+<p>为什么从第0帧到第i帧的 warp 更合理呢？</p>
+<ul>
+<li>假设我们现在有一个 LR 视频序列，每一帧都是 LR 的。借助降质模型，我们可以从 HR 的第0帧开始，变形到附近的多个i帧，然后降采样。最后，和 LR 视频中原有的第i帧作差，关于i求和。如果能使得该误差最小，那么 HR 的第0帧就最有可能是我们想要的。</li>
+</ul>
+<h3 id="4-4-Detail-Fusion-Net"><a href="#4-4-Detail-Fusion-Net" class="headerlink" title="4.4 Detail Fusion Net"></a>4.4 Detail Fusion Net</h3><p>作者把detail fusion net设计成编码-解码风格。前面的卷积层降低了分辨率，也使得特征图不那么稀疏，多帧图片也分别进入了LSTM模块，处理帧内关联信息，之后再通过deconvolution。</p>
+<p>Detail Fusion Net面临以下几点问题：</p>
+<ul>
+<li>由于输入是 HR 图像，因此通道尺寸会比较大，计算成本高。</li>
+<li>由于正向变形和补0升采样，4xHR 图像中大约 15/16 的格点都会是0。</li>
+<li>我们既要重视参考帧（因为 LR 和 HR 的图像结构是大致相同的），又不能过于依赖参考帧（否则和图片 SR 效果类似了）。</li>
+</ul>
+<p>因此，最终网络设计考虑了以下几点：</p>
+<ul>
+<li>先降维，而且是长宽各减半，减小计算成本；</li>
+<li>在中央使用 Conv-LSTM ，既利用了帧间信息，又利用了帧内信息；</li>
+<li>多处使用 Skip connection ，加快训练。</li>
+</ul>
+<h2 id="5-训练细节"><a href="#5-训练细节" class="headerlink" title="5 训练细节"></a>5 训练细节</h2><p>一口气进行端到端训练会在动作估计部分出现zero flow的问题，导致最后结果和单图像SR差不多，所以做了一个三步训练：</p>
+<ul>
+<li>只训练motion estimation的参数。鉴于没有label，所以用无监督的warping loss。</li>
+<li>固定ME的参数，训练后面的网络。</li>
+<li>联合训练。</li>
+</ul>
+<h2 id="6-优缺点与思考"><a href="#6-优缺点与思考" class="headerlink" title="6 优缺点与思考"></a>6 优缺点与思考</h2><p>SPMC可以<strong>同时完成超分辨和运动补偿</strong>，这点的思路跟Meta-SR的有相似之处，SPMC是无参模块，Meta-SR是共享参数模块（不同缩放因子的情况下参数一样）。Meta-SR的放大模块巧妙地完成了放大，但因为是单图超分，不存在利用多帧信息的问题，所以是否可以借鉴SPMC做运动补偿的方式，进一步优化Meta-SR模型以实现优质的视频超分。例如：参考帧依旧使用Meta-SR的方式，相邻帧在Meta-SR的基础上增加坐标增量以实现运动补偿。</p>
+<p>本文提出的模型依旧存在计算开销大的问题，因为SPMC在模型较靠前的位置做了放大，导致后面模块都是对大尺寸的特征图做计算，这会带来较大的时空开销。</p>
+<p>本文所采用的分步骤的训练模式值得借鉴和参考，一般可避免模块间联合训练带来的内耗。</p>
+<p>对于正向变形和反向变形的问题，值得进一步思考，即在做运动补偿之前，应该以何种模式构造参考帧与相邻帧的位移向量。</p>
+<p>参考：<br><a href="https://blog.csdn.net/lvxiao2897/article/details/102443387" target="_blank" rel="noopener">Paper | Detail-revealing Deep Video Super-resolution</a><br><a href="https://www.cnblogs.com/RyanXing/p/10010194.html" target="_blank" rel="noopener">Paper | Detail-revealing Deep Video Super-resolution</a></p>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>视频超分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论文阅读：KMSR for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AKMSR-for-VSR/</url>
-    <content><![CDATA[<p>Kernel Modeling Super-Resolution on Real Low-Resolution Images</p>
+    <content><![CDATA[<p>Kernel Modeling Super-Resolution on Real Low-Resolution Images. ICCV 2019</p>
 <a id="more"></a>
 
 <h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>为提升深度超分卷积神经网络对真实图像的泛化性和鲁棒性，本文提出一种“面向模糊核建模”的核模型超分网络KMSR。</p>
@@ -32,7 +101,7 @@
   <entry>
     <title>论文阅读：Meta-SR for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AMeta-SR-for-VSR/</url>
-    <content><![CDATA[<p>Meta-SR: A Magnification-Arbitrary Network for Super-Resolution</p>
+    <content><![CDATA[<p>Meta-SR: A Magnification-Arbitrary Network for Super-Resolution. CVPR 2019</p>
 <a id="more"></a>
 
 <h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>Single Image Super-Resolution</p>
@@ -67,7 +136,7 @@
   <entry>
     <title>论文阅读：EDVR for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AEDVR-for-VSR/</url>
-    <content><![CDATA[<p>EDVR: Video Restoration with Enhanced Deformable Convolutional Networks</p>
+    <content><![CDATA[<p>EDVR: Video Restoration with Enhanced Deformable Convolutional Networks. CVPR 2019</p>
 <a id="more"></a>
 
 <h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1 问题背景"></a>1 问题背景</h2><p>NTIRE19挑战赛中发布了⼀个具有挑战性的基准：REDS（REalistic and Diverse Scenes dataset），包含更⼤更复杂的运动，使其更加逼真和具有挑战性。</p>
@@ -111,7 +180,7 @@
   <entry>
     <title>论文阅读：TecoGAN for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ATecoGAN-for-VSR/</url>
-    <content><![CDATA[<p>Temporally Coherent GANs for Video Super-Resolution (TecoGAN)</p>
+    <content><![CDATA[<p>Temporally Coherent GANs for Video Super-Resolution (TecoGAN). CVPR 2019</p>
 <a id="more"></a>
 
 <h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>本⽂提出了⼀种针对VSR的对抗性训练，可以在不牺牲空间细节的情况下，获得节奏连贯的解决⽅案。</p>
@@ -139,7 +208,7 @@
   <entry>
     <title>论文阅读：FSTRN for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AFSTRN-for-VSR/</url>
-    <content><![CDATA[<p>Fast Spatio-Temporal Residual Network for Video Super-Resolution</p>
+    <content><![CDATA[<p>Fast Spatio-Temporal Residual Network for Video Super-Resolution. CVPR 2019</p>
 <a id="more"></a>
 
 <h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1 问题背景"></a>1 问题背景</h2><p>⽬前很多基于深度学习的超分辨率⽅法，忽略了视频的时间相关性，使得超分后的视频画⾯闪烁。</p>
@@ -175,7 +244,7 @@
   <entry>
     <title>论文阅读：3DSRnet for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9A3DSRnet-for-VSR/</url>
-    <content><![CDATA[<p>3DSRnet: Video Super-resolution using 3D Convolutional Neural Networks</p>
+    <content><![CDATA[<p>3DSRnet: Video Super-resolution using 3D Convolutional Neural Networks. CVPR 2019</p>
 <a id="more"></a>
 
 <h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>本⽂提出了⼀种有效的3D-CNN视频超分辨率⽹络，称为3DSRnet，它不需要运动对⻬作为预处理。</p>
@@ -208,7 +277,7 @@
   <entry>
     <title>论文阅读：RBPN for VSR</title>
     <url>/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ARBPN-for-VSR/</url>
-    <content><![CDATA[<p>Recurrent Back-Projection Network for Video Super-Resolution</p>
+    <content><![CDATA[<p>Recurrent Back-Projection Network for Video Super-Resolution. CVPR 2019</p>
 <a id="more"></a>
 
 <h2 id="1-背景问题"><a href="#1-背景问题" class="headerlink" title="1 背景问题"></a>1 背景问题</h2><p>超分辨率（SR）的⽬标是通过在低分辨率（LR）图像中填充丢失的细节，将低分辨率（LR）图像增强到⾼分辨率（HR）。超分辨率分为单图像SR（SISR）、多图像SR（MISR）和视频SR（VSR），本⽂关注重点即为视频SR。</p>
@@ -356,9 +425,9 @@
 <p>未完待续……</p>
 ]]></content>
       <tags>
+        <tag>深度学习</tag>
         <tag>超分辨率</tag>
         <tag>图像超分</tag>
-        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>

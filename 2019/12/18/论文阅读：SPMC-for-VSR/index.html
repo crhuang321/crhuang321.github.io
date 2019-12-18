@@ -4,17 +4,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>RSA加密算法 | 岭秋风</title>
+  <title>论文阅读：SPMC for VSR | 岭秋风</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="维基百科这样说：RSA加密算法">
-<meta name="keywords" content="算法">
+  <meta name="description" content="Detail-revealing Deep Video Super-resolution. ICCV 2017">
+<meta name="keywords" content="超分辨率,论文阅读笔记,视频超分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RSA加密算法">
-<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2018&#x2F;11&#x2F;02&#x2F;RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95&#x2F;index.html">
+<meta property="og:title" content="论文阅读：SPMC for VSR">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ASPMC-for-VSR&#x2F;index.html">
 <meta property="og:site_name" content="岭秋风">
-<meta property="og:description" content="维基百科这样说：RSA加密算法">
+<meta property="og:description" content="Detail-revealing Deep Video Super-resolution. ICCV 2017">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-03T13:06:37.133Z">
+<meta property="og:updated_time" content="2019-12-18T05:15:02.010Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/" title="岭秋风" type="application/atom+xml">
@@ -69,10 +69,10 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-RSA加密算法" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-论文阅读：SPMC-for-VSR" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/02/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="article-date">
-  <time datetime="2018-11-02T02:51:24.000Z" itemprop="datePublished">2018-11-02</time>
+    <a href="/2019/12/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ASPMC-for-VSR/" class="article-date">
+  <time datetime="2019-12-18T05:11:35.000Z" itemprop="datePublished">2019-12-18</time>
 </a>
     
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      RSA加密算法
+      论文阅读：SPMC for VSR
     </h1>
   
 
@@ -91,43 +91,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>维基百科这样说：<a href="https://www.wikiwand.com/zh/RSA%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">RSA加密算法</a></p>
+        <p>Detail-revealing Deep Video Super-resolution. ICCV 2017</p>
 <a id="more"></a>
 
-<h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><ol>
-<li>RSA 是非对称算法，加解密使用不同的密钥。</li>
-<li>RSA 算法的可靠性基础：<strong>对极大整数做因数分解是很困难的</strong>（NP问题）。</li>
-<li><strong>(n, e)</strong> 是公钥，<strong>(n, d)</strong> 是私钥，公钥发送给所有通信对象，私钥则必须保管好，防止泄露。</li>
-<li>若使RSA安全，<strong>p</strong> 与 <strong>q</strong> 必为足够大的素数，使破解者没办法在多项式时间内将 <strong>n</strong> 分解。</li>
-</ol>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ul>
-<li>现在<strong>Bob</strong>想要发送一封密信给<strong>Alice</strong>，他需要这样做：</li>
-</ul>
-<ol>
-<li>寻找两个大素数 <strong>p</strong> 和 <strong>q</strong></li>
-<li>计算 <strong>n = p * q</strong> 和 <strong>𝝋(n) = (p-1) * (q-1)</strong></li>
-<li>选择一个随机数 <strong>e</strong>（0 &lt; e &lt; 𝝋(n)），满足 <strong>e 与 𝝋(n) 互质</strong>  </li>
-<li>使用辗转相除法计算 <strong>e 关于 𝝋(n) 的模反元素 d</strong>，记为 <strong>d = e^{-1} (mod  𝝋(n))</strong></li>
-<li>在目录中公开 <strong>n</strong> 和 <strong>e</strong> 作为公钥，并销毁 <strong>p</strong> 和 <strong>q</strong></li>
-<li>将明文划分成块，使每个明文报文 <strong>P</strong> 的长度 <strong>m</strong> 满足：<strong>0 &lt; m &lt; n</strong></li>
-<li>依次加密 <strong>P</strong> 得到密文：<strong>C = P^e  (mod n)</strong></li>
-<li>向<strong>Alice</strong>发送密文 <strong>C</strong> 和公钥 <strong>(e, n)</strong></li>
-</ol>
+<h2 id="1-研究的问题"><a href="#1-研究的问题" class="headerlink" title="1 研究的问题"></a>1 研究的问题</h2><p>基于深度学习的视频超分辨率重建，有效处理运动补偿和灵活缩放的同时充分有效融合多帧关联信息。</p>
+<p>实现以下目标：</p>
 <ul>
-<li><strong>Alice</strong>收到密文后，这样解密：用私钥 <strong>(d, n)</strong>解密得到明文 <strong>P＝C^d (mod n)</strong></li>
+<li>任意大小输入，任意放缩系数。</li>
+<li>更好地利用亚像素信息。</li>
+<li>生成更真实的细节。</li>
 </ul>
+<h2 id="2-研究动机"><a href="#2-研究动机" class="headerlink" title="2 研究动机"></a>2 研究动机</h2><p>视频超分主要关注的两个问题：</p>
+<ul>
+<li>如何充分利用多帧关联信息</li>
+<li>如何有效融合图像细节到高分辨率图像中</li>
+</ul>
+<p>大多深度学习方法使用backward warping到参考帧的方法实现运动补偿，该方法并非最优。</p>
+<p>大多CNN方法在多帧融合时可以产生丰富的细节，但不能确定图像细节来源于内部帧还是外部数据。</p>
+<h2 id="3-先进性与贡献"><a href="#3-先进性与贡献" class="headerlink" title="3 先进性与贡献"></a>3 先进性与贡献</h2><p>SPMC可以<strong>同时完成超分辨和运动补偿</strong>，本文提出的SPMC可在运动补偿的同时实现任意缩放因子的超分。</p>
+<p>SPMC是无参数的，因此结合到视频超分辨网络中，使得该网络可用于任意尺寸的输入，而无需重新训练。</p>
+<p>作者基于现状提出一个sub-pixel motion compensation（SPMC）层，用来有效处理动作补偿和特征图缩放。</p>
+<p>对于多帧输入，作者用一个LSTM来处理多帧输入。</p>
+<h2 id="4-模型结构"><a href="#4-模型结构" class="headerlink" title="4 模型结构"></a>4 模型结构</h2><p>这个网络主要分成三个部分：motion estimation，motion compensation和detail fusion。</p>
+<h3 id="4-1-Motion-Estimation"><a href="#4-1-Motion-Estimation" class="headerlink" title="4.1 Motion Estimation"></a>4.1 Motion Estimation</h3><p>motion estimation已经相对比较成熟了，方法有Flownet-S和VESPCN中的motion compensation transformer（MCT）。最后作者计划使用MCT。</p>
+<h3 id="4-2-Motion-Compensation"><a href="#4-2-Motion-Compensation" class="headerlink" title="4.2 Motion Compensation"></a>4.2 Motion Compensation</h3><p>motion compensation用的就是SPMC层。</p>
+<p>作者在运动补偿（为像素点增加坐标增量）的同时加入了放缩系数 α，使得运动补偿和超分辨同时完成。</p>
+<h3 id="4-3-SPMC"><a href="#4-3-SPMC" class="headerlink" title="4.3 SPMC"></a>4.3 SPMC</h3><p>作第0帧到第i帧的变形（ warp ），要比反向变形更合理。</p>
+<ul>
+<li>之前的深度学习工作，几乎都是后者：从第i帧变形到第0帧，再用于补偿。这样做是直观上合理的。<br>但是，作者接下来指出：前者更有其合理性，是从理论上推导可得的。</li>
+<li>降采样的转置是补零升采样，形变的转置操作结果看图，会产生一些新的元素。</li>
+<li>转置操作虽然不是逆操作，但操作方向是相反的。如果我们定义正向为第0帧到第i帧，那么转置操作就是从第i帧到第0帧。</li>
+</ul>
+<p>为什么从第0帧到第i帧的 warp 更合理呢？</p>
+<ul>
+<li>假设我们现在有一个 LR 视频序列，每一帧都是 LR 的。借助降质模型，我们可以从 HR 的第0帧开始，变形到附近的多个i帧，然后降采样。最后，和 LR 视频中原有的第i帧作差，关于i求和。如果能使得该误差最小，那么 HR 的第0帧就最有可能是我们想要的。</li>
+</ul>
+<h3 id="4-4-Detail-Fusion-Net"><a href="#4-4-Detail-Fusion-Net" class="headerlink" title="4.4 Detail Fusion Net"></a>4.4 Detail Fusion Net</h3><p>作者把detail fusion net设计成编码-解码风格。前面的卷积层降低了分辨率，也使得特征图不那么稀疏，多帧图片也分别进入了LSTM模块，处理帧内关联信息，之后再通过deconvolution。</p>
+<p>Detail Fusion Net面临以下几点问题：</p>
+<ul>
+<li>由于输入是 HR 图像，因此通道尺寸会比较大，计算成本高。</li>
+<li>由于正向变形和补0升采样，4xHR 图像中大约 15/16 的格点都会是0。</li>
+<li>我们既要重视参考帧（因为 LR 和 HR 的图像结构是大致相同的），又不能过于依赖参考帧（否则和图片 SR 效果类似了）。</li>
+</ul>
+<p>因此，最终网络设计考虑了以下几点：</p>
+<ul>
+<li>先降维，而且是长宽各减半，减小计算成本；</li>
+<li>在中央使用 Conv-LSTM ，既利用了帧间信息，又利用了帧内信息；</li>
+<li>多处使用 Skip connection ，加快训练。</li>
+</ul>
+<h2 id="5-训练细节"><a href="#5-训练细节" class="headerlink" title="5 训练细节"></a>5 训练细节</h2><p>一口气进行端到端训练会在动作估计部分出现zero flow的问题，导致最后结果和单图像SR差不多，所以做了一个三步训练：</p>
+<ul>
+<li>只训练motion estimation的参数。鉴于没有label，所以用无监督的warping loss。</li>
+<li>固定ME的参数，训练后面的网络。</li>
+<li>联合训练。</li>
+</ul>
+<h2 id="6-优缺点与思考"><a href="#6-优缺点与思考" class="headerlink" title="6 优缺点与思考"></a>6 优缺点与思考</h2><p>SPMC可以<strong>同时完成超分辨和运动补偿</strong>，这点的思路跟Meta-SR的有相似之处，SPMC是无参模块，Meta-SR是共享参数模块（不同缩放因子的情况下参数一样）。Meta-SR的放大模块巧妙地完成了放大，但因为是单图超分，不存在利用多帧信息的问题，所以是否可以借鉴SPMC做运动补偿的方式，进一步优化Meta-SR模型以实现优质的视频超分。例如：参考帧依旧使用Meta-SR的方式，相邻帧在Meta-SR的基础上增加坐标增量以实现运动补偿。</p>
+<p>本文提出的模型依旧存在计算开销大的问题，因为SPMC在模型较靠前的位置做了放大，导致后面模块都是对大尺寸的特征图做计算，这会带来较大的时空开销。</p>
+<p>本文所采用的分步骤的训练模式值得借鉴和参考，一般可避免模块间联合训练带来的内耗。</p>
+<p>对于正向变形和反向变形的问题，值得进一步思考，即在做运动补偿之前，应该以何种模式构造参考帧与相邻帧的位移向量。</p>
+<p>参考：<br><a href="https://blog.csdn.net/lvxiao2897/article/details/102443387" target="_blank" rel="noopener">Paper | Detail-revealing Deep Video Super-resolution</a><br><a href="https://www.cnblogs.com/RyanXing/p/10010194.html" target="_blank" rel="noopener">Paper | Detail-revealing Deep Video Super-resolution</a></p>
 
       
     </div>
     <footer class="article-footer">
       <!-- 
-        <a data-url="https://crhuang321.github.io/2018/11/02/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" data-id="ck4aulruu0009tklfbidad11o" class="article-share-link">分享到</a>
+        <a data-url="https://crhuang321.github.io/2019/12/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ASPMC-for-VSR/" data-id="ck4aulrx2004ctklfbhi25okg" class="article-share-link">分享到</a>
        -->
 
       
 
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a></li></ul>
 
     </footer>
   </div>
@@ -135,19 +169,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/02/%E4%BF%A1%E6%81%AF%E7%86%B5%E7%9A%84%E6%9C%89%E8%B6%A3%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          信息熵的有趣应用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/02/%E7%94%A8%E4%BD%8D%E7%A4%BA%E5%9B%BE%E7%AE%A1%E7%90%86%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AKMSR-for-VSR/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">用位示图管理磁盘存储空间</div>
+      <div class="article-nav-title">论文阅读：KMSR for VSR</div>
     </a>
   
 </nav>
