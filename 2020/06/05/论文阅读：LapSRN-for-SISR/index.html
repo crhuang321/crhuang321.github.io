@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：LapSRN for SISR | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LapSRN: Deep Laplacian Pyramid Networks for Fast and Accurate Super-Resolution. CVPR 2017">
+<meta name="keywords" content="超分辨率,图像超分,论文阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：LapSRN for SISR">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2020&#x2F;06&#x2F;05&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALapSRN-for-SISR&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="LapSRN: Deep Laplacian Pyramid Networks for Fast and Accurate Super-Resolution. CVPR 2017">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;lapsrn.png">
+<meta property="og:updated_time" content="2020-06-05T03:14:50.216Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;lapsrn.png">
+  
+    <link rel="alternative" href="/" title="岭秋风" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a class="nav-icon" href="https://github.com/crhuang321" title="GitHub" target="_blank">&#61595;</a>
+          <a class="nav-icon" href="mailto: crhuang@foxmail.com" title="Mail" target="_blank">&#xf003;</a>
+          <!-- <a id="nav-rss-link" class="nav-icon" href="/" title="RSS Feed"></a> -->
+        
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读：LapSRN-for-SISR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALapSRN-for-SISR/" class="article-date">
+  <time datetime="2020-06-05T03:13:25.000Z" itemprop="datePublished">2020-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：LapSRN for SISR
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LapSRN: Deep Laplacian Pyramid Networks for Fast and Accurate Super-Resolution. CVPR 2017</p>
+<a id="more"></a>
+
+<h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1 文章摘要"></a>1 文章摘要</h2><p>之前的方法存在有三点问题:</p>
+<ul>
+<li>一是有的方法在输入图像进网络前，需要使用预先定义好的上采样操作(例如bicubic)来获得目标的空间尺寸，这样的操作增加了额外的计算开销，同时也会导致可见的重建伪影。而有的方法使用了亚像素卷积层或者反卷积层这样的操作来替换预先定义好的上采样操作，这些方法的网络结构又相对比较简单，性能较差，并不能学好低分辨率图像到高分辨率图像复杂的映射。</li>
+<li>二是在训练网络时使用 L2 型损失函数时，不可避免地会产生模糊的预测，恢复出的高分辨率图片往往会太过于平滑。</li>
+<li>三是在重建高分辨率图像时，如果只用一次上采样的操作，在获得大倍数(8倍以上)的上采样因子时就会比较困难。而且在不同的应用时，需要训练不同上采样倍数的模型。</li>
+</ul>
+<p>LapSRN的结构可以看成有多级，每一级完成一次2倍的上采样操作，要实现8倍的上采样就需要有三级。</p>
+<p>在每一级中，先通过一些级联的卷积层提取特征，接着通过一个反卷积层将提取出的特征的尺寸上采样2倍。</p>
+<p>反卷积层后连有两个卷积层，一个卷积层的作用是继续提取特征，另外一个卷积层的作用是预测出这一级的残差。</p>
+<p>输入图像在每一级也经过一个反卷积层使尺寸上采样2倍，再与对应级的残差相加，就能重构出这一级的上采样结果。</p>
+<p>LapSRN通过逐步上采样，一级一级预测残差的方式，在做高倍上采样时，也能得到中间低倍上采样结果的输出。由于尺寸是逐步放大，不是所有的操作都在大尺寸特征上进行，因此速度比较快。</p>
+<p>LapSRN设计了损失函数来训练网络，对每一级的结果都进行监督，因此取得了不错的结果。</p>
+<h2 id="2-网络结构"><a href="#2-网络结构" class="headerlink" title="2 网络结构"></a>2 网络结构</h2><p><img src="/assets/blogimg/lapsrn.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- 
+        <a data-url="https://crhuang321.github.io/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALapSRN-for-SISR/" data-id="ckb1n2b60004clslf5d5ied44" class="article-share-link">分享到</a>
+       -->
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86/" rel="tag">图像超分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ADRRN-for-SISR/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：DRRN for SISR</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Video-Captioning/" rel="tag">Video Captioning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86/" rel="tag">图像超分</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALapSRN-for-SISR/">论文阅读：LapSRN for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ADRRN-for-SISR/">论文阅读：DRRN for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ARED-for-SISR/">论文阅读：RED for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ADRCN-for-SISR/">论文阅读：DRCN for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AVDSR-for-SISR/">论文阅读：VDSR for SISR</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      <br/>
+      Modifications Based on <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":360},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
