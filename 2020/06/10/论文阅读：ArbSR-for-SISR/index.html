@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>论文阅读：ArbSR for SISR | 岭秋风</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ArbSR: Learning for Scale-Arbitrary Super-Resolution from Scale-Specific Networks. CVPR 2020">
+<meta name="keywords" content="超分辨率,图像超分,论文阅读笔记,任意尺度超分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读：ArbSR for SISR">
+<meta property="og:url" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;2020&#x2F;06&#x2F;10&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AArbSR-for-SISR&#x2F;index.html">
+<meta property="og:site_name" content="岭秋风">
+<meta property="og:description" content="ArbSR: Learning for Scale-Arbitrary Super-Resolution from Scale-Specific Networks. CVPR 2020">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;arbsr.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;sac.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;saf.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;sau.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;sakt.png">
+<meta property="og:updated_time" content="2020-06-10T07:26:40.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;crhuang321.github.io&#x2F;assets&#x2F;blogimg&#x2F;arbsr.png">
+  
+    <link rel="alternative" href="/" title="岭秋风" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">岭秋风</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a class="nav-icon" href="https://github.com/crhuang321" title="GitHub" target="_blank">&#61595;</a>
+          <a class="nav-icon" href="mailto: crhuang@foxmail.com" title="Mail" target="_blank">&#xf003;</a>
+          <!-- <a id="nav-rss-link" class="nav-icon" href="/" title="RSS Feed"></a> -->
+        
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="crhuang321.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-论文阅读：ArbSR-for-SISR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AArbSR-for-SISR/" class="article-date">
+  <time datetime="2020-06-10T07:17:41.000Z" itemprop="datePublished">2020-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读：ArbSR for SISR
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ArbSR: Learning for Scale-Arbitrary Super-Resolution from Scale-Specific Networks. CVPR 2020</p>
+<a id="more"></a>
+
+<h2 id="1-研究的问题"><a href="#1-研究的问题" class="headerlink" title="1 研究的问题"></a>1 研究的问题</h2><p>本文提出从特定尺度的网络中学习一个尺度任意的图像超分网络。</p>
+<h2 id="2-研究动机"><a href="#2-研究动机" class="headerlink" title="2 研究动机"></a>2 研究动机</h2><p>近来单幅图像超分的性能得到了显著的提高，但这些网络是针对单一特定整数尺度（如×2,×3,×4）的图像SR开发的，不能用于非整数和非对称的图像SR。</p>
+<ul>
+<li><p>non-integer SR (e.g., from 100 × 100 to 220 × 220) </p>
+</li>
+<li><p>asymmetric SR (e.g., from 100 × 100 to 220 × 420) </p>
+</li>
+</ul>
+<p>Meta-SR的贡献与不足：</p>
+<ul>
+<li>贡献：利用元学习来预测不同尺度因子的滤波器权重，在非整数尺度因子上产生了很好的结果。</li>
+<li>不足：<ul>
+<li>首先，规模信息只用于网络中的上采样。也就是说，对于不同尺度因子的SR任务，骨干网中的特征是相同的，这阻碍了性能的进一步提高。</li>
+<li>第二，Meta-SR要从头开始训练（耗时较长），内存开销较大。</li>
+<li>第三，Meta-SR主要针对非整数尺度因子的SR，而无法处理非对称尺度因子的SR。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-相关研究"><a href="#3-相关研究" class="headerlink" title="3 相关研究"></a>3 相关研究</h2><p>单图超分：</p>
+<ul>
+<li>Lim等提出了一种多尺度深度超解系统(MDSR)，以整合针对多个尺度因子(即×2、×3、×4)训练的模块。然而，MDSR不能超解非整数尺度因子的图像。Lim, B., Son, S., Kim, H., Nah, S., Lee, K.M.: Enhanced deep residual networks for single image super-resolution. In: CVPR. (2017)</li>
+<li>Hu等人提出了一种Meta-SR网络来解决尺度因子上采样问题。具体来说，他们使用元学习来预测不同尺度因子下滤波器的权重。但是，Meta-SR不能处理非对称尺度因子的SR，而且内存开销较大。Hu, X., Mu, H., Zhang, X., Wang, Z., Sun, J., Tan, T.: Meta-SR: A magnification- arbitrary network for super-resolution. In: CVPR. (2019)</li>
+</ul>
+<p>多任务学习Multi-task learning：</p>
+<ul>
+<li>多任务学习的目的是为多个不同的任务开发一个模型。一个多任务学习网络通常包括一个共同的主干和多个不同任务的输出分支（路径）。多任务学习是基于这样的直觉，即多个任务是相互关联的，并且可以相互促进。然而，对于尺度任意的单幅图像SR，必须使用单个网络来处理任意尺度因子的SR。因此，多任务学习不适合我们的问题，因为必须处理无限多的尺度因子。</li>
+</ul>
+<p>元学习Meta-learning：</p>
+<ul>
+<li>元学习（Meta-learning），又称学习学习，旨在学习元知识，使从新数据中学习的过程更加有效和高效。元学习常用于强化学习和优化。作为元学习策略之一，权重预言被应用于众多任务中，包括图像识别和对象检测。在这些网络中，网络的权重是从元学习器而不是训练数据中学习的。在Meta-SR中，元学习被用于SR，以预测不同尺度因子的滤波器的权重。在我们的插件模块中，元学习也被用于学习元知识。</li>
+</ul>
+<p>迁移学习Transfer learning：</p>
+<ul>
+<li>转移学习的目的是将从源领域学到的知识转移到目标领域。目标域可以是一个新的任务或新的环境。由于多尺度SR是相互关联的任务，如果我们把非整数SR和非对称SR作为目标域，那么整数尺度因子的SR可以被视为源域。因此，我们的动机是将特定尺度SR网络的知识转移到尺度任意网络中。</li>
+</ul>
+<h2 id="4-先进性与贡献"><a href="#4-先进性与贡献" class="headerlink" title="4 先进性与贡献"></a>4 先进性与贡献</h2><p>由于具有多个尺度的图像SR任务是相互关联的，因此，由强大的特定尺度网络学习到的知识可以转移到训练一个任意尺度的网络上。</p>
+<p>本文提出从尺度特定网络学习一个尺度任意的单图像SR网络。</p>
+<p>具体来说，本文提出了一个针对现有SR网络的插件模块来执行任意尺度SR，它由多个尺度-感知特征自适应块和一个尺度-感知上采样层组成。</p>
+<p>此外，本文还引入了一个尺度感知的知识转换范式，将知识从尺度特定网络转移到尺度任意网络中。本文的插件模块可以很容易地适应现有的网络，以实现尺度-任意SR。</p>
+<p>这些网络插入本文的模块，可以实现非整数和非对称SR的有前途的结果，同时保持整数尺度因子SR的最先进的性能。此外，本文模块的额外计算和内存成本非常小。</p>
+<h2 id="5-模型与方法"><a href="#5-模型与方法" class="headerlink" title="5 模型与方法"></a>5 模型与方法</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>由于不同尺度因子的SR任务是相互关联的，因此，从尺度特定的SR网络（如×2、×3、×4）学习尺度任意SR网络是非平凡的。因此，我们首先研究×2/×3/×4 SR任务之间的关系，为标度-任意SR提供见解。</p>
+<ul>
+<li><p>具体来说，我们在B100数据集上进行实验，比较预训练的×2/×3/×4 SR网络中特定层上的特征分布。</p>
+</li>
+<li><p>在我们的实验中，选择EDSR作为基线网络。RCAN的实验结果在补充材料中提供。</p>
+</li>
+<li><p>首先，我们将B100数据集的图像下采样到四分之一大小，然后送入为×2/×3/×4 SR开发的EDSR网络。然后将第i个残差块中最后一层的特征用于可视化。</p>
+</li>
+<li><p>总而言之，对于不同的区块和区域，尺度依赖性是不同的。在这一观察结果的激励下，我们将尺度依赖性特征和尺度独立性特征区分开来，然后自适应地执行尺度感知特征自适应。具体来说，与尺度无关的特征可以直接用于任意尺度因子的SR，而与尺度相关的特征则应根据尺度因子进行自适应。</p>
+</li>
+</ul>
+<h3 id="Our-Plug-in-Module"><a href="#Our-Plug-in-Module" class="headerlink" title="Our Plug-in Module"></a>Our Plug-in Module</h3><p>An overview of our plug-in module</p>
+<p><img src="/assets/blogimg/arbsr.png" alt=""></p>
+<p>Scale-Aware Convolution</p>
+<p>规模感知卷积层如图2(c)所示。首先，水平尺度因子rh和垂直尺度因子rv被送入两个完全连接的层，产生一个特征向量。然后，将这个特征向量分别送入内核头和偏置头，预测内核和偏置。接下来，预测的内核和偏置被用来对输入的特征图进行深度卷积。最后，将得到的特征图传递给1×1卷积，以融合不同通道的信息，从而得到一个输出特征。</p>
+<p><img src="/assets/blogimg/sac.png" alt=""></p>
+<p>Scale-Aware Feature Adaption</p>
+<p>给定一个特征图F，首先将其送入带有四个卷积的沙漏模块，以生成一个数值范围为0到1的尺度依赖性掩模M。 然后，将F送入尺度感知卷积进行特征适应，从而得到一个适应的特征图 F^adapt。最后融合后的输出为：F^fuse = F + F^adapt * M</p>
+<p><img src="/assets/blogimg/saf.png" alt=""></p>
+<p>Scale-Aware Upsampling</p>
+<p>首先HR上的每个像素被投影到LR空间以计算LR空间上的坐标C(x)和C(y)，并计算相对距离R(x)和R(y)。然后将他们被送入两层全连接网络提取特征，再预测得到Kernel、Bias、Offset</p>
+<p><img src="/assets/blogimg/sau.png" alt=""></p>
+<p>Scale-Aware Knowledge Transfer</p>
+<p>对于×r(r=2，3，4)SR，基线SR网络(×r)可以作为知识传输的教师网络。直观地说，我们将骨干模块中的特征作为监督。为了利用教师骨干模块中隐藏层的丰富信息，学生网络每隔K个区块学习教师的输出，如图3所示。请注意，我们的尺度感知知识转移范式只用于训练阶段。知识转移损失被定义为L1损失。</p>
+<p><img src="/assets/blogimg/sakt.png" alt=""></p>
+<h2 id="6-训练细节"><a href="#6-训练细节" class="headerlink" title="6 训练细节"></a>6 训练细节</h2><p>使用高质量的DIV2K数据集进行网络训练。该数据集包含800张训练图像、100张验证图像和100张测试图像。</p>
+<p>然后使用了五个基准数据集来测试我们的模块，包括Set5、Set14、B100、Urban100和Manga109。</p>
+<p>峰值信噪比(PSNR)和结构相似度指数(SSIM)被用作评价指标，以确定SR的性能。</p>
+<p>此外，我们对边界进行了裁剪，以实现公平比较。</p>
+<p>请注意，所有指标都是在亮度通道中计算的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- 
+        <a data-url="https://crhuang321.github.io/2020/06/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AArbSR-for-SISR/" data-id="ckb910fci003v10lfaua70l40" class="article-share-link">分享到</a>
+       -->
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%BB%E6%84%8F%E5%B0%BA%E5%BA%A6%E8%B6%85%E5%88%86/" rel="tag">任意尺度超分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86/" rel="tag">图像超分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALapSRN-for-SISR/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">论文阅读：LapSRN for SISR</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Video-Captioning/" rel="tag">Video Captioning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%BB%E6%84%8F%E5%B0%BA%E5%BA%A6%E8%B6%85%E5%88%86/" rel="tag">任意尺度超分</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%B6%85%E5%88%86/" rel="tag">图像超分</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86/" rel="tag">视频超分</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">论文阅读笔记</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag">超分辨率</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AArbSR-for-SISR/">论文阅读：ArbSR for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALapSRN-for-SISR/">论文阅读：LapSRN for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ADRRN-for-SISR/">论文阅读：DRRN for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ARED-for-SISR/">论文阅读：RED for SISR</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ADRCN-for-SISR/">论文阅读：DRCN for SISR</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 岭秋风<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      <br/>
+      Modifications Based on <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":360},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
