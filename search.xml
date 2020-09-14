@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>论文阅读：OverNet for SISR</title>
+    <url>/2020/09/14/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AOverNet-for-SISR/</url>
+    <content><![CDATA[<p>OverNet: Lightweight Multi-Scale Super-Resolution with Overscaling Network</p>
+<p><a href="https://jishuin.proginn.com/p/763bfbd2a61d" target="_blank" rel="noopener"><strong>250 FPS！OverNet：超快、超轻量级的多尺度超分辨率网络</strong></a></p>
+<a id="more"></a>
+
+<p>Paper：<a href="https://arxiv.org/abs/2008.02382" target="_blank" rel="noopener">https://arxiv.org/abs/2008.02382</a></p>
+<p>导读：本文提出了一种轻量型任意尺度超分方案，它将任意尺度数据制作思路引入到OSM设计中。作者通过实验证实了所提OSM的有效性，性能比MetaSR更高，速度更快。</p>
+<h2 id="1-本文解决了什么问题？"><a href="#1-本文解决了什么问题？" class="headerlink" title="1 本文解决了什么问题？"></a>1 本文解决了什么问题？</h2><ol>
+<li>基于CNNs的超分方法计算量过大</li>
+<li>大多模型仅能处理特定的超分比例、泛化性能差</li>
+<li>部署时模型过大</li>
+</ol>
+<h2 id="2-作者是怎么解决这些问题的？"><a href="#2-作者是怎么解决这些问题的？" class="headerlink" title="2 作者是怎么解决这些问题的？"></a>2 作者是怎么解决这些问题的？</h2><ol>
+<li>提出了OverNet——一种用于单模型任意尺度图像超分的轻量型CNN网络</li>
+<li>通过实验证明了OverNet具有更少的参数、更优的性能</li>
+</ol>
+<h2 id="3-本文的主要贡献是什么？"><a href="#3-本文的主要贡献是什么？" class="headerlink" title="3 本文的主要贡献是什么？"></a>3 本文的主要贡献是什么？</h2><ol>
+<li>首先，引入一种轻量型递归特征提取器，通过跳跃连接和稠密连接进行特征的重复和有效利用</li>
+<li>其次，提出一种过尺度模块用于生成过尺度特征并进而用于生成任意尺度输出，它可以有效提升模型的重建效果（为最大化特征提取器的性能而提出的一种高精度重建模块，它可以轻易嵌入到现有超分网络以改进性能）</li>
+<li>最后作者引入多尺度损失函数，可同时进行单模型多尺度训练，获得了不错的跨尺度泛化性能</li>
+</ol>
+<h2 id="4-本文提出的OverNet是什么？"><a href="#4-本文提出的OverNet是什么？" class="headerlink" title="4 本文提出的OverNet是什么？"></a>4 本文提出的OverNet是什么？</h2><p><img src="/assets/blogimg/overnet.png" alt=""></p>
+<p><img src="/assets/blogimg/overnet-algorithm.png" alt=""></p>
+<ol>
+<li>Feature Extractor<ul>
+<li>特征提取器是不同超分网络的关键区别，比如EDSR中的ResBlock，RCAN中RCAB，也就是说特征提取器直接决定了模型的最终性能。在该文中，作者基于ResBlock与递归结构构建了DenseGroup。</li>
+<li>残差模块是图像超分领域应用最广的一个模块，作者在标准残差模块的基础上进行了改进：(1)引入通道注意力机制SE；(2)引入可学习尺度因子。</li>
+<li>作者将前述所提到的改进残差模块组合形成DenseGroup。DG的输入与第一个RB的输出进行concat并融入到1x1卷积，在DG中递归重复上述。通过上述方式，我们可以收集所有的局部信息并通过1x1卷积融合，最后采用额外的1x1卷积输出特征表达。</li>
+<li>为提升模型的容量，作者对DG进行了与上述类似的递归操作，此外作者采用1x1卷积控制通道维度。通过上述跳过链接、稠密连接的组合，模型可以同时集成局部与全局特征。</li>
+<li>为确保重建阶段没有信息损失，作者还添加了一个全局跳过连接，这个也是超分领域常用的一种结构。</li>
+</ul>
+</li>
+<li>Overscaling Module<ul>
+<li>为生成更精度且更少伪影的图像，作者提出了提出了过尺度模块，它基于这样的假设：过尺度可以为同一像素生成更多的值，这些值可以起到集成的作用，进而可以降低噪声。假设N为最大超分尺度，作者首先过尺度特征H_OHR，它的分辨率尺度为N+1。因此，基于所提取的特征h，作者采用3x3卷积+pixelshuffle得到过尺度特征。</li>
+<li>为得到过尺度模块的最终输出，作者进一步引入第二个来自的全局跳过连接。最终的HR输出可以描述如下：<img src="/assets/blogimg/overnet-output.png" alt=""></li>
+<li>因此，我们可以认为：<strong>整个网络的目标就是学习如何微调或者校正双三次插值上采样的结果以更好的逼近真实HR图像。</strong></li>
+</ul>
+</li>
+<li>Multi-scale Loss<ul>
+<li>作者提出最小化多尺度损失以优化OverNet，作者选用了有限数量的尺度因子S={s1,s2,…,sn}，一旦得到了最高分辨率HR图像，那么可以采用bicubic得到其他尺度的输出，最后定义损失损失如下：<img src="/assets/blogimg/overnet-loss.png" alt=""></li>
+</ul>
+</li>
+</ol>
+<h2 id="5-实验结果怎么样？"><a href="#5-实验结果怎么样？" class="headerlink" title="5 实验结果怎么样？"></a>5 实验结果怎么样？</h2><ol>
+<li>OverNet与MetaSR的实验对比：看以看出本文方法具有更优的性能，同时所提OSM模块比MetaSR模块性能更优。</li>
+<li>OverNet与其他超分方法的对比</li>
+<li>不同降质模型下的超分效果对比</li>
+<li>不同超分方案的耗时对比</li>
+<li>实验结果总结：本文提出的OverNet是一种效果好且速度快的单模型任意尺度图像超分模型。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>超分辨率</tag>
+        <tag>图像超分</tag>
+        <tag>论文阅读笔记</tag>
+        <tag>任意尺度超分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论文阅读：ArbSR for SISR</title>
     <url>/2020/06/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AArbSR-for-SISR/</url>
     <content><![CDATA[<p>ArbSR: Learning for Scale-Arbitrary Super-Resolution from Scale-Specific Networks. CVPR 2020</p>
@@ -423,8 +483,8 @@
       <tags>
         <tag>超分辨率</tag>
         <tag>论文阅读笔记</tag>
-        <tag>视频超分</tag>
         <tag>任意尺度超分</tag>
+        <tag>视频超分</tag>
       </tags>
   </entry>
   <entry>
@@ -488,8 +548,8 @@
       <tags>
         <tag>超分辨率</tag>
         <tag>论文阅读笔记</tag>
-        <tag>视频超分</tag>
         <tag>任意尺度超分</tag>
+        <tag>视频超分</tag>
       </tags>
   </entry>
   <entry>
